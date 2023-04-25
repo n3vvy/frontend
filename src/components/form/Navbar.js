@@ -170,9 +170,6 @@ const Navbar = () => {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem disabled>
-              <Avatar /> Profil
-            </MenuItem>
             <Link to="/user-account">
               <MenuItem>
                 <Avatar /> Moje konto
