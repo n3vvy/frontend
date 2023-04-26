@@ -30,6 +30,8 @@ export default function SelectCategory(props) {
           <MenuItem value="fortnite">Fortnite</MenuItem>
           <MenuItem value="wot">World of Tanks</MenuItem>
           <MenuItem value="wiedzmin3">Wiedźmin 3</MenuItem>
+          <MenuItem value="Valorant">Valorant</MenuItem>
+          <MenuItem value="CS:GO">CS:GO</MenuItem>
         </Select>
       </FormControl>
     </div>

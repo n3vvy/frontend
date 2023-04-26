@@ -57,7 +57,7 @@ const Post = () => {
         <title>{post?.title}</title>
       </Helmet>
       <Navbar></Navbar>
-      <div className="home-main">
+      <div className="home-main-post">
         <div className="home-main-left">
           <div className="post-header">
             <h2>{post?.title}</h2>

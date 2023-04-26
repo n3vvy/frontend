@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../assets/nevvy-logo.png";
+import tlo from "../../assets/tlo.png"
 import LogoutButtton from "../../components/ui/LogoutButtton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddIcon from "@mui/icons-material/Add";
@@ -85,36 +86,25 @@ const Navbar = () => {
   return (
     <section className="navbar-wrapper">
       <div className="navbar-left">
-        <Link to={"/"}>
-          <img src={logo} height="40px"></img>
+        <Link to={"http://localhost:3000"}>
+          <img src={logo} height="150px" class="center"></img>
         </Link>
       </div>
+      <div className="navbar-center">
+            <img src={tlo} height="450px" ></img>
+      </div>  
+      <div className= "navbar-top">   
       <div className="navbar-right">
-      <Search>
+              <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Wyszukaj.."
               inputProps={{ 'aria-label': 'search' }}
-            />
+              />
           </Search>
-        {/* <Link
-              to={"/add-new"}
-              style={{ textDecoration: "none", color: "black", height: "24px" }}
-              >
-              <PostAddIcon></PostAddIcon>
-            </Link>
 
-        <Link
-          to={"/user-account"}
-          style={{ textDecoration: "none", color: "white", height: "24px" }}
-        >
-          <Avatar sx={{ width: 24, height: 24, fontSize: "small" }}>
-            {user?.username.slice(0, 2).toUpperCase()}
-          </Avatar>
-        </Link>
-        <LogoutButtton></LogoutButtton> */}
 
         <React.Fragment>
           <Box
@@ -195,6 +185,7 @@ const Navbar = () => {
             </MenuItem>
           </Menu>
         </React.Fragment>
+      </div>
       </div>
     </section>
   );

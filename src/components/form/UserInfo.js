@@ -6,11 +6,8 @@ const UserInfo = () => {
     console.log(loggedUser);
   return (
     <section className='user-info'>
-    <h3>Informacje o użytkowniku:</h3>
+    <h21>Informacje o użytkowniku:</h21>
     <p><b>Nazwa: </b>{loggedUser?.currentUser?.username ?? "brak"}</p>
-    <p><b>E-mail: </b>{loggedUser?.currentUser?.email ?? "brak"}</p>
-    <p><b>Utworzony: </b>{loggedUser?.currentUser?.createdAt ?? "brak"}</p>
-    <p><b>id: </b>{loggedUser?.currentUser?._id ?? "brak"}</p>
     </section>
   )
 }

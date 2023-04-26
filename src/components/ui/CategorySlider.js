@@ -29,6 +29,14 @@ function handleClick(tmp){
         <img src={sliderItems[5].img}></img>
         <p>{sliderItems[5].title}</p>
     </div>
+    <div className='single-category' onClick={() => handleClick(6)}>
+        <img src={sliderItems[6].img}></img>
+        <p>{sliderItems[6].title}</p>
+    </div>
+    <div className='single-category' onClick={() => handleClick(7)}>
+        <img src={sliderItems[7].img}></img>
+        <p>{sliderItems[7].title}</p>
+    </div>
     <div className='single-category' onClick={() => handleClick(0)} style={{width: "18px"}}>
         <p>{sliderItems[0].title}</p>
     </div>

@@ -33,7 +33,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #082032 inset !important;
+  -webkit-box-shadow: 0 0 0 30px #1b0749 inset !important;
   -webkit-text-fill-color: white;
 }
 
@@ -42,7 +42,7 @@ input:-webkit-autofill:active {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #082032; /* CHANGE THIS LATER */
+  background-color: #1b0749; /* CHANGE THIS LATER */
 }
 
 @media screen and (max-width: 666px) {
@@ -91,10 +91,10 @@ input:-webkit-autofill:active {
 }
 
 .register-form-container {
-  background: #082032;
+  background: #1b0749;
   border-width: 2px 0px 0px 2px;
   border-style: solid;
-  border-color: #00a3ff;
+  border-color: #0305a0;
   border-radius: 16px;
   width: 650px;
   height: 600px;
@@ -153,7 +153,7 @@ input:-webkit-autofill:active {
   background: rgba(121, 7, 175, 0.01);
   border-width: 2px 0px 0px 2px;
   border-style: solid;
-  border-color: #00a3ff;
+  border-color: #0305a0;
   box-shadow: 0px 4px 10px -2px #ff00e5;
   border-radius: 16px;
 }
@@ -175,7 +175,7 @@ input:-webkit-autofill:active {
   background: rgba(121, 7, 175, 0.01);
   border-width: 2px 0px 0px 2px;
   border-style: solid;
-  border-color: #00a3ff;
+  border-color: #0305a0;
   box-shadow: 0px 4px 10px -2px #ff00e5;
 }
 
@@ -183,7 +183,7 @@ input:-webkit-autofill:active {
   background: rgba(121, 7, 175, 0.01);
   border-width: 2px 0px 0px 2px;
   border-style: solid;
-  border-color: #00a3ff;
+  border-color: #0305a0;
   box-shadow: 0px 4px 10px -2px #ff00e5;
   border-radius: 16px;
   font-weight: 700;
@@ -208,33 +208,55 @@ input:-webkit-autofill:active {
 .home-container {
   display: flex;
   flex-direction: column;
-  background-color: #2C394B;
+  background-color: #1b0749;
   color: #ffffff;
   width: auto;
   min-height: 100vh;
 }
 
 .navbar-wrapper {
-  background-color: #082032;
+  background-color: #1b0749;
   color: #ffffff;
-  height: 5vh;
+  height: 40vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.navbar-left{
-  flex-basis: 64vw;
+
+.navbar-center {
+  justify-content: center;
 }
+
+
+.navbar-left{
+  flex-basis: 30vw;
+}
+
 
 .navbar-right{
   display: flex;
-  flex-basis: 14vw;
+  flex-basis: 30vw;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
 }
+
+.navbar-top{
+  height: 90%;
+  flex-basis: 30vw;
+}
+
+.footer-social{
+  display: flex;
+  gap: 5px;
+}
+
+.footer-social-element{
+  display: flex;
+  gap: 3px;
+}
+
 
 .navbar-right button{
 float: right;
@@ -248,8 +270,37 @@ font-weight: bold;
 .home-main{
   display: flex;
   justify-content: center;
-  background-color: #2C394B;
+  background: linear-gradient(to bottom, #1b0749, #8d66ad, #1b0749);
   margin-top: 10px;
+  /* border-style: solid;
+  border-color: black; */
+}
+
+.home-main-user{
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, #1b0749, #8d66ad, #1b0749);
+  margin-top: 10px;
+  /* border-style: solid;
+  border-color: black; */
+}
+
+.home-main-add{
+  display: flex;
+  justify-content: center;
+  background: #1b0749;
+  margin-top: 10px;
+  /* border-style: solid;
+  border-color: black; */
+}
+
+.home-main-post{
+  display: flex;
+  justify-content: center;
+  background: #1b0749;
+  margin-top: 10px;
+  /* border-style: solid;
+  border-color: black; */
 }
 
 .home-main-left{
@@ -259,6 +310,17 @@ font-weight: bold;
 .home-main-right{
 flex-basis: 0vw;
 }
+
+h3{
+  text-align: center;
+  font-size: medium;
+}
+
+h5{
+  text-align: center;
+  font-size: large;
+}
+
 
 .register-confirm-main{
   height: 100vh;
@@ -273,14 +335,22 @@ flex-basis: 0vw;
   width: 90vw;
 }
 
+
+
 .single-post{
   display: flex;
   /* width: 66vw; */
-  background-color: #082032;
+  background-color: #1b0749;
   margin: 10px 0 0 0px;
   flex-direction: row;
   padding: 10px;
   justify-content: space-between;
+  border-style: solid;
+  border-color: #8d66ad;
+  border-radius: 15px;
+}
+.single-post :hover{
+color: #8d66ad;
 }
 
 .post-header{
@@ -351,6 +421,11 @@ flex-basis: 0vw;
 
 .user-main-left{
   flex-basis: 20vw;
+  font-size: large;
+}
+
+.h21{
+font-size: large;
 }
 
 .user-main-right{
@@ -371,7 +446,7 @@ flex-basis: 0vw;
 
 .add-new-post input{
   width: 60vw;
-  background-color: #ffffffad;
+  background-color: #8d66ad;
   border: none;
   border-radius: 5px;
   height: 26px;
@@ -380,7 +455,7 @@ flex-basis: 0vw;
 
 .anp-button{
   width: 120px;
-  background-color: #082032;
+  background-color: #1b0749;
   color: #ffffff;
   border: none;
   font-size: 20px;
@@ -391,7 +466,7 @@ flex-basis: 0vw;
 
 textarea{
   height: 500px;
-  background-color: #ffffffad;
+  background-color: #8d66ad;
   border: none;
   border-radius: 5px;
 }
@@ -413,7 +488,7 @@ textarea{
 .footer-wrapper{
   /* margin-top: 4vh;
   height: 15vh; */
-  background-color: #082032;
+  background-color: #1b0749;
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -445,17 +520,25 @@ textarea{
   display: flex;
   flex-direction: column;
 }
+.footer-social{
+  display: flex;
+  flex-direction: column;
+}
 
 .category-slider{
   display: flex;
   gap: 5px;
   margin-top: 5px;
   display: flex;
-    justify-content: center;
+  justify-content: center;
+  border-style: solid;
+  border-color: #8d66ad;
+  border-radius: 15px;
+
 }
 
 .single-category{
-  background-color: #393e46;
+  background-color: #1b0749;
   padding: 7px;
   gap: 3px;
   display: flex;
@@ -465,7 +548,7 @@ textarea{
 }
 
 .single-category:hover{
-  background-color: #46484b;
+  background-color: #8d66ad;
 }
 
 .single-category img{
@@ -559,7 +642,7 @@ textarea{
   }
 
   .footer-wrapper{
-    background-color: #082032;
+    background-color: #1b0749;
     display: flex;
     align-items: center;
   }
@@ -588,6 +671,11 @@ textarea{
     flex-direction: column;
   }
 
+  .footer-social{
+    display: flex;
+    flex-direction: column;
+  }
+
 .home-main{
   flex-direction: column;
   align-items: center;
@@ -603,6 +691,7 @@ textarea{
 .navbar-wrapper{
   padding: 10px;
 }
+
 
 .add-new-post input {
   width: 90vw;

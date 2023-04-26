@@ -35,4 +35,16 @@ export const sliderItems = [
     title: "Cyberpunk",
     desc: "cyberpunk",
   },
+  {
+    id: 6,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5e7LxehYmWX7Zm0YfphB973bLFjCweqw8TRz5LmtbfD3ie1aQl1fU019_L66-dvJoB_E&usqp=CAU",
+    title: "Valorant",
+    desc: "Valorant",
+  },
+  {
+    id: 7,
+    img: "https://cdn.hejto.pl/uploads/posts/images/1200x900/820ca4aaf678e691a223dab1416a34c2.png",
+    title: "CS:GO",
+    desc: "CS:GO",
+  },
 ];

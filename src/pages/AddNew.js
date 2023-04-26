@@ -10,7 +10,7 @@ const AddNew = () => {
         <title>Dodaj nowy post - nevvy</title>
       </Helmet>
       <Navbar></Navbar>
-      <div className="home-main">
+      <div className="home-main-add">
         <AddPost></AddPost>
       </div>
     </div>

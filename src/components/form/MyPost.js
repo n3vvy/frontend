@@ -24,7 +24,7 @@ const MyPost = () => {
   return (
     <>
       <div>
-        <h3>Moje posty:</h3>
+        <h5>Moje posty:</h5>
         <div>
           {myPosts ? <NewestPosts info={myPosts}></NewestPosts> : "Brak"}
         </div>

@@ -11,7 +11,7 @@ const User = () => {
         <title>Profil użytkownika - nevvy</title>
       </Helmet>
       <Navbar></Navbar>
-      <div className="home-main">
+      <div className="home-main-user">
       <section className="user-main-left">
         <UserInfo></UserInfo>
         </section>
