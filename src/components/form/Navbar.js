@@ -86,7 +86,7 @@ const Navbar = () => {
   return (
     <section className="navbar-wrapper">
       <div className="navbar-left">
-        <Link to={"http://localhost:3000"}>
+        <Link to={"/"}>
           <img src={logo} height="150px" class="center"></img>
         </Link>
       </div>
