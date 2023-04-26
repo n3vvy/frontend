@@ -7,7 +7,7 @@ export const sliderItems = [
   },
   {
     id: 1,
-    img: "https://cdn.icon-icons.com/icons2/3053/PNG/512/league_of_legends_macos_bigsur_icon_190030.png",
+    img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/LoL_icon.svg",
     title: "League of Legends",
     desc: "lol",
   },
