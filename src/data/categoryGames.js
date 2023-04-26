@@ -13,19 +13,19 @@ export const sliderItems = [
   },
   {
     id: 2,
-    img: "https://cdn2.unrealengine.com/12br-delay-social-news-header-02-1920x1080-119208936.jpg",
+    img: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Fortnite_F_lettermark_logo.png",
     title: "Fortnite",
     desc: "fortnite",
   },
   {
     id: 3,
-    img: "https://logos-download.com/wp-content/uploads/2016/02/world-of-tanks.png",
+    img: "https://i.imgur.com/wo4YiZK.png",
     title: "World of Tanks",
     desc: "wot",
   },
   {
     id: 4,
-    img: "https://forums.cdprojektred.com/styles/witcher3/logo-pl.png",
+    img: "https://i.imgur.com/zQsCmlh.png",
     title: "Wiedźmin 3",
     desc: "wiedzmin3",
   },
