@@ -86,7 +86,7 @@ const Navbar = () => {
   return (
     <section className="navbar-wrapper">
       <div className="navbar-left">
-        <Link to={"http://localhost:3000"}>
+        <Link to={"/"}>
           <img src={logo} height="150px" class="center"></img>
         </Link>
       </div>
@@ -174,12 +174,14 @@ const Navbar = () => {
                 Dodaj nowy post
               </MenuItem>
             </Link>
-            <MenuItem disabled>
+            <Link to="/UserSettings">
+            <MenuItem>
               <ListItemIcon>
                 <Settings fontSize="small" />
               </ListItemIcon>
               Ustawienia
             </MenuItem>
+            </Link>
             <MenuItem>
               <LogoutButtton></LogoutButtton>
             </MenuItem>
