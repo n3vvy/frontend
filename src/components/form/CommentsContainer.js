@@ -5,9 +5,10 @@ import {
 } from "@mui/icons-material";
 import { Avatar, Button, IconButton } from "@mui/material";
 import React, { useState, useEffect, useContext } from "react";
+import { useSelector } from "react-redux";
 import { AlertContext } from "../../context/react/AlertContext";
 import { convertToReadableDate } from "../../services/convertToReadableDate";
-import { publicRequest } from "../../services/requestMethods";
+import { publicRequest, userRequest } from "../../services/requestMethods";
 import AddComment from "../form/AddComment";
 
 const AddReply = (props) => {
@@ -76,12 +77,15 @@ const ShowReplies = (props) => {
 
 const CommentsDisplay = ({ comments }) => {
   // const { inputProps } = useContext(AlertContext);
-
+  const user = useSelector((state) => state?.user.currentUser);
+  
   const [commentList, setCommentList] = useState(comments);
+  
+  const deleteComment = async (commentId, userId) => {
+    console.log(userId?._id)
 
-  const deleteComment = async (commentId) => {
     try {
-      const response = await publicRequest.delete(`/comment/${commentId}`);
+      const response = await userRequest.delete(`/comment/${userId?._id}/${commentId}`);
       console.log(response.data); // Tutaj możesz zaktualizować stan komponentu nadrzędnego lub odświeżyć stronę
       setCommentList(commentList.filter((comment) => comment._id !== commentId));
     } catch (error) {
@@ -122,7 +126,10 @@ const CommentsDisplay = ({ comments }) => {
               <ThumbUpOffAlt sx={{ height: "18px" }}></ThumbUpOffAlt>
             </IconButton>
             <AddReply comment={comment}></AddReply>
-            <Button onClick={() => deleteComment(comment?._id)}>USUŃ</Button>
+            {comment?.user_id?._id === user._id ? 
+            <Button size="small" onClick={() => deleteComment(comment?._id,comment?.user_id)}>USUŃ</Button>
+          : null
+          }
           </div>
           <ShowReplies
             replies={comment?.replies}
