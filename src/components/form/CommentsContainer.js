@@ -75,7 +75,24 @@ const ShowReplies = (props) => {
 };
 
 const CommentsDisplay = ({ comments }) => {
-  const { inputProps } = useContext(AlertContext);
+  // const { inputProps } = useContext(AlertContext);
+
+  const [commentList, setCommentList] = useState(comments);
+
+  const deleteComment = async (commentId) => {
+    try {
+      const response = await publicRequest.delete(`/comment/${commentId}`);
+      console.log(response.data); // Tutaj możesz zaktualizować stan komponentu nadrzędnego lub odświeżyć stronę
+      setCommentList(commentList.filter((comment) => comment._id !== commentId));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    setCommentList(comments);
+  }, [comments]);
+
   console.log(comments);
   return (
     <div className="comments-display">
@@ -104,17 +121,8 @@ const CommentsDisplay = ({ comments }) => {
             >
               <ThumbUpOffAlt sx={{ height: "18px" }}></ThumbUpOffAlt>
             </IconButton>
-            <IconButton
-              size="small"
-              sx={{ fontSize: "12px", height: "32px", width: "32px" }}
-            >
-              <ThumbDownOffAlt sx={{ height: "18px" }}></ThumbDownOffAlt>
-            </IconButton>
-            {/* <Button onClick={() => setXs(!xs)} size="small" sx={{ fontSize: "12px", height: "32px" }}>
-              Odpowiedz
-            </Button>
-            {xs &&<AddComment type="addReply" commentId={comment?._id}></AddComment>} */}
             <AddReply comment={comment}></AddReply>
+            <Button onClick={() => deleteComment(comment?._id)}>USUŃ</Button>
           </div>
           <ShowReplies
             replies={comment?.replies}
