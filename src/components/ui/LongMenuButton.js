@@ -11,6 +11,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { MoreVert, Share, Warning } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
+import ShareDialog from '../form/ShareDialog';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -84,9 +85,10 @@ export default function LongMenuButton() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <Share />
-          Udostępnij
+        <MenuItem>
+          {/* <Share />
+          Udostępnij */}
+          <ShareDialog></ShareDialog>
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>

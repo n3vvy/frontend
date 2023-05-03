@@ -17,6 +17,7 @@ import { Stack } from "@mui/system";
 import AlertProvider from "../context/react/AlertContext";
 import { AlertContext } from "../context/react/AlertContext";
 import Alerts from "../components/ui/Alerts";
+import ShareDialog from "../components/form/ShareDialog";
 
 const Post = () => {
   const location = useLocation();
