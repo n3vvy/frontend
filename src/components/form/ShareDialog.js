@@ -35,8 +35,8 @@ const ShareDialog = () => {
       setLoading(true);
       try {
         const BITLY_ACCESS_TOKEN = '8c090088321f916a4ec2afcf9a5b82a28696703a'; // Replace with your Bitly API access token
-        console.log('URL:', url); // Log the URL to be shortened
-        console.log('Bitly Access Token:', BITLY_ACCESS_TOKEN); // Log the Bitly Access Token
+        // console.log('URL:', url); // Log the URL to be shortened
+        // console.log('Bitly Access Token:', BITLY_ACCESS_TOKEN); // Log the Bitly Access Token
         const response = await fetch(`https://api-ssl.bitly.com/v4/shorten`, {
           method: 'POST',
           headers: {
@@ -81,8 +81,8 @@ const ShareDialog = () => {
         Udostępnij
       </MenuItem>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Udostępnij link do strony</DialogTitle>
-        <DialogContent>
+        <DialogTitle style={{backgroundColor: "#1b0749"}}>Udostępnij link do strony</DialogTitle>
+        <DialogContent style={{backgroundColor: "#1b0749"}}>
           {loading ? (
             <CircularProgress />
           ) : (
@@ -105,7 +105,7 @@ const ShareDialog = () => {
             />
           )}
         </DialogContent>
-        <DialogActions>
+        <DialogActions style={{backgroundColor: "#1b0749"}}>
           {copied && (
             <span style={{ marginRight: "auto" }}>Link skopiowany!</span>
           )}

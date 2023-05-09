@@ -133,7 +133,7 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
               comment={comment}
               refreshComments={refreshComments} // przekazanie funkcji odświeżającej
             ></AddReply>
-            {comment?.user_id?._id === user._id ? (
+            {comment?.user_id?._id === user?._id ? (
               <Button
                 size="small"
                 onClick={() => deleteComment(comment?._id, comment?.user_id)}
