@@ -1,4 +1,4 @@
-import { Send } from "@mui/icons-material";
+import { Send, ThumbUpAltOutlined } from "@mui/icons-material";
 import { Avatar, Button, Grid, TextField, Snackbar } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from "../components/form/Navbar";
 import LongMenuButton from "../components/ui/LongMenuButton";
 import { sliderItems } from "../data/categoryGames";
-import { publicRequest } from "../services/requestMethods";
+import { publicRequest, userRequest } from "../services/requestMethods";
 import AddComment from "../components/form/AddComment";
 import CommentsContainer from "../components/form/CommentsContainer";
 import { convertToReadableDate } from "../services/convertToReadableDate";
@@ -38,6 +38,20 @@ const Post = () => {
     }
     return null;
   }
+
+  const addLike = async (postId, userId) => {
+    try {
+      const response = await userRequest.post(`/post/posts/${postId}/like`, { userId: userId });
+      console.log(response.data);
+      setPost((prevPost) => {
+        return { ...prevPost, likeValue: response.data.post.likeValue };
+      });
+      // alert("Pomyślnie zaktualizowano polubienia posta.");
+    } catch (error) {
+      console.error(error);
+      // alert("Wystąpił błąd podczas aktualizacji polubień posta. Spróbuj ponownie później.");
+    }
+  };
 
   useEffect(() => {
     const getPost = async () => {
@@ -87,6 +101,10 @@ const Post = () => {
           </div>
           <div className="post-main">
             <p>{post?.content}</p>
+          </div>
+          <div>
+            <Button onClick={() => addLike(post._id, user._id)} endIcon={<ThumbUpAltOutlined />}>LIKE</Button>
+            <p>{post?.likeValue || 0}</p>
           </div>
           <div className="post-comments">
             <h2>Odpowiedzi:</h2>
