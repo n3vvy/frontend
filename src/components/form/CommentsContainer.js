@@ -87,14 +87,32 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
 
   const [commentList, setCommentList] = useState(comments);
 
+  // const deleteComment = async (commentId, userId) => {
+  //   try {
+  //     const response = await userRequest.delete(`/comment/${userId?._id}/${commentId}`);
+  //     console.log(response.data);
+  //     setCommentList(commentList.filter((comment) => comment._id !== commentId));
+  //     refreshComments(); // wywołanie funkcji odświeżającej stan komponentu nadrzędnego
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   const deleteComment = async (commentId, userId) => {
-    try {
-      const response = await userRequest.delete(`/comment/${userId?._id}/${commentId}`);
-      console.log(response.data);
-      setCommentList(commentList.filter((comment) => comment._id !== commentId));
-      refreshComments(); // wywołanie funkcji odświeżającej stan komponentu nadrzędnego
-    } catch (error) {
-      console.error(error);
+    const confirmed = window.confirm("Czy na pewno chcesz kontynuować?");
+    if (confirmed) {
+      try {
+        const response = await userRequest.delete(`/comment/${userId?._id}/${commentId}`);
+        console.log(response.data);
+        setCommentList(commentList.filter((comment) => comment._id !== commentId));
+        refreshComments(); // wywołanie funkcji odświeżającej stan komponentu nadrzędnego
+        alert("Pomyślnie usunięto komentarz.");
+      } catch (error) {
+        console.error(error);
+        alert("Wystąpił błąd podczas usuwania komentarza. Spróbuj ponownie później.");
+      }
+    } else {
+      alert("Anulowano usuwanie komentarza.");
     }
   };
 
