@@ -32,6 +32,9 @@ export default function SelectCategory(props) {
           <MenuItem value="wiedzmin3">Wiedźmin 3</MenuItem>
           <MenuItem value="Valorant">Valorant</MenuItem>
           <MenuItem value="CS:GO">CS:GO</MenuItem>
+          <MenuItem value="CODMW2">COD MW2</MenuItem>
+          <MenuItem value="DBD">Dead by Daylight</MenuItem>
+          <MenuItem value="AC">Assassin's Creed</MenuItem>
         </Select>
       </FormControl>
     </div>

@@ -17,40 +17,49 @@ const LoginForm = () => {
 
   return (
     <>
-      <section className="register-form-container h400">
-        <div className="register-form-title">
-          <h2>Logowanie</h2>
-        </div>
+      <section className="register-box">
+        <h2>Logowanie</h2>
         <form>
-          <div id="register-form-input-element">
-            <label htmlFor="login-form-name">Nazwa użytkownika: </label>
+          <div className="user-box">
             <input
-              type={"text"}
+              type="text"
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Wpisz login.."
               id="login-form-name"
-            ></input>
+              required
+            />
+            <label htmlFor="login-form-name">Nazwa użytkownika: </label>
           </div>
-          <div id="register-form-input-element">
-            <label htmlFor="login-form-password">Hasło: </label>
+          <div className="user-box">
             <input
-              type={"password"}
+              type="password"
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Wpisz hasło.."
               id="login-form-password"
-            ></input>
+              required
+            />
+            <label htmlFor="login-form-password">Hasło: </label>
           </div>
-          <code><p style={{ color: "red", marginTop: "10px" }}>
-            {error[0]?.response?.data}
-          </p></code>
-          <button
-            onClick={handleClick}
-            disabled={isFetching}
-            className="register-form-confirm-button"
-          >
-            Zaloguj
-          </button>
-          <Link to="/register"><h4 style={{marginTop:"20px"}}>Nie masz konta? Przejdź do rejestracji</h4></Link>
+          <code>
+            <p style={{ color: "red", marginTop: "10px" }}>
+              {error[0]?.response?.data}
+            </p>
+          </code>
+            <button className="login-button"
+              onClick={handleClick}
+              disabled={isFetching}
+            >
+              <a href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Zaloguj się
+              </a>
+            </button>
+          <Link to="/register">
+            <h4 style={{ marginTop: "20px" }}>
+              Nie masz konta? Przejdź do rejestracji
+            </h4>
+          </Link>
         </form>
       </section>
     </>

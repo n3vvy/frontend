@@ -11,7 +11,7 @@ const AddComment = (props) => {
   const [isTextFieldActive, setIsTextFieldActive] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [error, setError] = useState("");
-  const {inputProps, open} = useContext(AlertContext);
+  const { inputProps, open } = useContext(AlertContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,10 +41,18 @@ const AddComment = (props) => {
     <div className="post-add-comment">
       <Avatar
         id="comment-avatar"
-        sx={{ width: 26, height: 26, fontSize: "small" }}
+        sx={{
+          width: 26,
+          height: 26,
+          fontSize: "small",
+          backgroundColor: "#1b0749",
+          color: "#ffffff",
+          border: "2px solid #8d66ad"
+        }}
       >
         {user?.username?.slice(0, 2).toUpperCase()}
       </Avatar>
+
       <Grid container>
         <Grid item xs={12} sm={10} md={10} lg={11}>
           <Box

@@ -86,21 +86,33 @@ const Navbar = () => {
   return (
     <section className="navbar-wrapper">
       <div className="navbar-left">
-        <Link to={"/"}>
-          <img src={logo} height="150px" class="center"></img>
-        </Link>
+      <Link to={"/"}>
+      <div className="logo-container">
+        <span className="neon-text">Nevvy</span>
       </div>
+    </Link>
+      </div>
+
       <div className="navbar-center">
+<<<<<<< HEAD
         <img src={tlo} height="450px"></img>
       </div>
       <div className="navbar-top">
         <div className="navbar-right">
           <Search>
+=======
+        <img src={tlo} height="450px" ></img>
+      </div>
+      <div className="navbar-top">
+        <div className="navbar-right">
+          <Search style={{ backgroundColor: '#1b0749', border: '2px solid #8d66ad' }}>
+>>>>>>> 24f72e3 (fix)
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Wyszukaj.."
+<<<<<<< HEAD
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
@@ -112,6 +124,16 @@ const Navbar = () => {
                 alignItems: "center",
                 textAlign: "center",
               }}
+=======
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+
+
+          <React.Fragment>
+            <Box
+              sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+>>>>>>> 24f72e3 (fix)
             >
               <Tooltip title="Ustawienia konta">
                 <IconButton
@@ -122,9 +144,16 @@ const Navbar = () => {
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
                 >
+<<<<<<< HEAD
                   <Avatar sx={{ width: 26, height: 26, fontSize: "small" }}>
                     {user?.username.slice(0, 2).toUpperCase()}
                   </Avatar>
+=======
+                  <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
+                    {user?.username.slice(0, 2).toUpperCase()}
+                  </Avatar>
+
+>>>>>>> 24f72e3 (fix)
                 </IconButton>
               </Tooltip>
             </Box>
@@ -148,6 +177,7 @@ const Navbar = () => {
                   },
                   "&:before": {
                     content: '""',
+<<<<<<< HEAD
                     display: "block",
                     position: "absolute",
                     top: 0,
@@ -158,12 +188,20 @@ const Navbar = () => {
                     transform: "translateY(-50%) rotate(45deg)",
                     zIndex: 0,
                   },
+=======
+                    display: "none", // Dodana reguła CSS, aby ukryć pseudo-element ':before'
+                  },
+                  backgroundColor: "rgba(27, 7, 73, 0.9)", // changed background color to rgba(27, 7, 73, 0.9) with opacity 0.9
+                  border: "1px solid #8d66ad", // changed border color to #8d66ad
+                  color: "white", // changed text color to white
+>>>>>>> 24f72e3 (fix)
                 },
               }}
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
               {user ? (
+<<<<<<< HEAD
                 <>
                   <Link to="/user-account">
                     <MenuItem>
@@ -173,6 +211,17 @@ const Navbar = () => {
                   <Divider />
                 </>
               ) : null}
+=======
+                <Link to="/user-account">
+                  <MenuItem>
+                    <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
+                      {user?.username.slice(0, 2).toUpperCase()}
+                    </Avatar> Moje konto
+                  </MenuItem>
+                </Link>
+              ) : null}
+              <Divider />
+>>>>>>> 24f72e3 (fix)
               {user ? (
                 <Link to="/add-new">
                   <MenuItem>

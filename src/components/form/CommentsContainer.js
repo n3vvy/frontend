@@ -147,6 +147,7 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
             >
               <ThumbUpOffAlt sx={{ height: "18px" }}></ThumbUpOffAlt>
             </IconButton>
+<<<<<<< HEAD
             <AddReply
               comment={comment}
               refreshComments={refreshComments} // przekazanie funkcji odświeżającej
@@ -159,6 +160,19 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
                 USUŃ
               </Button>
             ) : null}
+=======
+            {/* <IconButton
+              size="small"
+              sx={{ fontSize: "12px", height: "32px", width: "32px" }}
+            >
+              <ThumbDownOffAlt sx={{ height: "18px" }}></ThumbDownOffAlt>
+            </IconButton> */}
+            {/* <Button onClick={() => setXs(!xs)} size="small" sx={{ fontSize: "12px", height: "32px" }}>
+              Odpowiedz
+            </Button>
+            {xs &&<AddComment type="addReply" commentId={comment?._id}></AddComment>} */}
+            <AddReply comment={comment}></AddReply>
+>>>>>>> 24f72e3 (fix)
           </div>
           <ShowReplies
             replies={comment?.replies}

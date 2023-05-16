@@ -1,6 +1,5 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from "react-redux";
-const myFunction = () => {};
 const UserInfo = () => {
     const loggedUser = useSelector((state) => state.user);
     console.log(loggedUser);
@@ -9,7 +8,7 @@ const UserInfo = () => {
     <section className='user-settings'>
     {/* <button className='user-settings-button' onClick={myFunction()}>Zmień hasło</button>
     <button className='user-settings-button' onClick={myFunction()}>Usuń konto</button> */}
-    <div class="login-box">
+    <div class="login-box-user-sett">
         Ustawienia konta
         <form>
           <a href="#">
@@ -18,6 +17,13 @@ const UserInfo = () => {
             <span></span>
             <span></span>
             Zmień hasło
+          </a>
+          <a href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Zmień avatar
           </a>
           <a href="#">
             <span></span>

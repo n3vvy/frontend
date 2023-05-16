@@ -2,7 +2,7 @@ export const sliderItems = [
   {
     id: 0,
     img: "",
-    title: "x",
+    title: "X",
     desc: "",
   },
   {
@@ -46,5 +46,23 @@ export const sliderItems = [
     img: "https://cdn.hejto.pl/uploads/posts/images/1200x900/820ca4aaf678e691a223dab1416a34c2.png",
     title: "CS:GO",
     desc: "CS:GO",
+  },
+  {
+    id: 8,
+    img: "https://assets-prd.ignimgs.com/2022/05/24/call-of-duty-modern-warfare-2-button-02-1653417394041.jpg?width=300&crop=1%3A1%2Csmart",
+    title: "CODMW2",
+    desc: "CODMW2",
+  },
+  {
+    id: 9,
+    img: "https://pbs.twimg.com/media/E8g-cjpWUAAR9jb.png",
+    title: "Dead by Daylight",
+    desc: "DBD",
+  },
+  {
+    id: 10,
+    img: "https://seeklogo.com/images/A/assassins-creed-logo-F1CD062017-seeklogo.com.png",
+    title: "Assassin's Creed",
+    desc: "Assassin's Creed",
   },
 ];

@@ -24,63 +24,69 @@ const RegisterForm = () => {
   };
 
   return (
-    <section className="register-form-container">
-      <div className="register-form-title">
+    <section className="login-box">
+      <div className="logo">
         <h2>Rejestracja</h2>
       </div>
       <form>
-        <div id="register-form-input-element">
-          <label htmlFor="register-form-name">Nazwa użytkownika</label>
+        <div className="user-box">
           <input
             type={"text"}
             id="register-form-name"
+            required
             onChange={(e) => setUsername(e.target.value)}
-          ></input>
+          />
+          <label htmlFor="register-form-name">Nazwa użytkownika</label>
         </div>
-        <div id="register-form-input-element">
+        <div className="user-box">
+          <input type={"text"} id="register-form-email" required onChange={(e) => setEmail(e.target.value)} />
           <label htmlFor="register-form-email">E-mail</label>
-          <input type={"text"} id="register-form-email" onChange={(e) => setEmail(e.target.value)}></input>
         </div>
-        <div id="register-form-input-element">
+        <div className="user-box">
+          <input type={"password"} id="register-form-password" required onChange={(e) => setPassword(e.target.value)} />
           <label htmlFor="register-form-password">Hasło</label>
-          <input type={"password"} id="register-form-password" onChange={(e) => setPassword(e.target.value)}></input>
         </div>
-        <div id="register-form-input-element">
-          <label htmlFor="register-form-name">Potwierdź hasło</label>
-          <input type={"password"} id="register-form-confirm-password" onChange={(e) => setPasswordConfirm(e.target.value)}></input>
+        <div className="user-box">
+          <input type={"password"} id="register-form-confirm-password" required onChange={(e) => setPasswordConfirm(e.target.value)} />
+          <label htmlFor="register-form-confirm-password">Potwierdź hasło</label>
         </div>
         <section className="register-form-accept">
-          <div id="register-form-input-element-ch">
-            <input type={"checkbox"} id="register-form-confirm-policy" ref={policyRef.policy1}></input>
+          <div className="user-box">
+            <input type={"checkbox"} id="register-form-confirm-policy" ref={policyRef.policy1} />
             <label htmlFor="register-form-confirm-policy">
               Zapoznałem/am się z Regulaminem forum Nevvy
             </label>
           </div>
-          <div id="register-form-input-element-ch">
-            <input type={"checkbox"} id="register-form-confirm-policy2" ref={policyRef.policy2}></input>
+          <div className="user-box">
+            <input type={"checkbox"} id="register-form-confirm-policy2" ref={policyRef.policy2} />
             <label htmlFor="register-form-confirm-policy2">
               Zgadzam się z Warunkami użytkowania
             </label>
           </div>
-          <div id="register-form-input-element-ch">
-            <input type={"checkbox"} id="register-form-confirm-policy3" ref={policyRef.policy3}></input>
+          <div className="user-box">
+            <input type={"checkbox"} id="register-form-confirm-policy3" ref={policyRef.policy3} />
             <label htmlFor="register-form-confirm-policy3">
               Wysyłaj wiadomości i aktualizacje
             </label>
           </div>
+
         </section>
         <code><p style={{ color: "red", marginTop: "10px" }}>
-            {error[0]?.response?.data}
-          </p></code>
+          {error[0]?.response?.data}
+        </p></code>
         <button
           className="register-form-confirm-button"
           onClick={handleClick}
           disabled={isFetching}
         >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
           UTWÓRZ NOWE KONTO
         </button>
-        <Link to="/login">
-          <h4 style={{ marginTop: "20px" }}>
+        <Link to="/login" className="register-form-login-link">
+          <h4>
             Posiadasz już konto? Przejdź do logowania
           </h4>
         </Link>

@@ -77,9 +77,9 @@ const Post = () => {
           <div className="post-header">
             <h2>{post?.title}</h2>
             <div className="post-owner">
-              <Avatar sx={{ width: 26, height: 26, fontSize: "small" }}>
-                {post?.username?.slice(0, 2).toUpperCase()}
-              </Avatar>
+            <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
+                    {user?.username.slice(0, 2).toUpperCase()}
+                  </Avatar>
               <p>{post?.username}</p>
             </div>
             <div className="post-header-desc">

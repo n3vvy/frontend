@@ -47,7 +47,7 @@ const Home = () => {
         ></CategorySlider>
         <section className="home-main">
           <section className="home-main-left">
-            <h2>Najnowsze posty {findTitleByDesc(sliderItems, category)}</h2>
+            <h2>Najnowsze posty: {findTitleByDesc(sliderItems, category)}</h2>
             <NewestPosts info={newstPosts}></NewestPosts>
           </section>
           <section className="home-main-right"></section>
