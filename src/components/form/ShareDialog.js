@@ -81,8 +81,8 @@ const ShareDialog = () => {
         Udostępnij
       </MenuItem>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle style={{backgroundColor: "#1b0749"}}>Udostępnij link do strony</DialogTitle>
-        <DialogContent style={{backgroundColor: "#1b0749"}}>
+        <DialogTitle style={{ backgroundColor: "#1b0749" }}>Udostępnij link do strony</DialogTitle>
+        <DialogContent style={{ backgroundColor: "#1b0749" }}>
           {loading ? (
             <CircularProgress />
           ) : (
@@ -105,7 +105,7 @@ const ShareDialog = () => {
             />
           )}
         </DialogContent>
-        <DialogActions style={{backgroundColor: "#1b0749"}}>
+        <DialogActions style={{ backgroundColor: "#1b0749" }}>
           {copied && (
             <span style={{ marginRight: "auto" }}>Link skopiowany!</span>
           )}
@@ -119,3 +119,4 @@ const ShareDialog = () => {
 };
 
 export default ShareDialog;
+

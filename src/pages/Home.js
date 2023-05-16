@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/form/Navbar";
 import UserNotVerifed from "../services/UserNotVerifed";
 import { Helmet } from "react-helmet";
+import MostLikedPosts from "../components/form/MostLikedPosts";
 import NewestPosts from "../components/form/NewestPosts";
 import { BASE_URL } from "../services/requestMethods";
 import Footer from "../components/form/Footer";
@@ -50,7 +51,10 @@ const Home = () => {
             <h2>Najnowsze posty: {findTitleByDesc(sliderItems, category)}</h2>
             <NewestPosts info={newstPosts}></NewestPosts>
           </section>
-          <section className="home-main-right"></section>
+          <section className="home-main-right">
+          <h2>Najpopularniejsze posty: {findTitleByDesc(sliderItems, category)}</h2>
+            <MostLikedPosts info={newstPosts}></MostLikedPosts>
+          </section>
         </section>
         <Footer></Footer>
         <UserNotVerifed></UserNotVerifed>

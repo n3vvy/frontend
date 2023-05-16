@@ -274,7 +274,6 @@ span {
 
 
 
-
 .register-box .user-box {
   position: relative;
   text-align: center;
@@ -1154,6 +1153,7 @@ span {
 
 .home-main {
   display: flex;
+  gap: 100px;
   justify-content: center;
   background: linear-gradient(to bottom, #1b0749, #8d66ad, #1b0749);
   margin-top: 10px;
@@ -1189,11 +1189,11 @@ span {
 }
 
 .home-main-left {
-  flex-basis: 80vw;
+  flex-basis: 60vw;
 }
 
 .home-main-right {
-  flex-basis: 0vw;
+  flex-basis: 30vw;
 }
 
 h3 {
@@ -1280,9 +1280,9 @@ h5 {
   margin-bottom: 10px;
 }
 
-.single-post-left {
+/* .single-post-left {
   width: 50vw;
-}
+} */
 
 .single-post-left h1:hover {
   color: #ffffff;
@@ -1301,9 +1301,9 @@ h5 {
   align-items: center;
 }
 
-.home-main-right {
+/* .home-main-right {
   text-align: center;
-}
+} */
 
 .user-main-left {
   flex-basis: 20vw;
@@ -1593,9 +1593,9 @@ textarea {
     height: 50vh;
   }
 
-  .single-post {
+  /* .single-post {
     width: 94vw;
-  }
+  } */
 
   .single-post-right {
     flex-basis: 20vw;
