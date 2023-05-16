@@ -7,6 +7,10 @@
   -moz-osx-font-smoothing: grayscale;
   scrollbar-color: #1b0749;
 }
+@font-face {
+  font-family: 'Gang of Three';
+  src: url('../assets/fonts/gangofthreerg.ttf') format('truetype');
+}
 
 ::-webkit-scrollbar {
   width: 15px;
