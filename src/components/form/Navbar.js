@@ -86,11 +86,11 @@ const Navbar = () => {
   return (
     <section className="navbar-wrapper">
       <div className="navbar-left">
-      <Link to={"/"}>
-      <div className="logo-container">
-        <span className="neon-text">Nevvy</span>
-      </div>
-    </Link>
+        <Link to={"/"}>
+          <div className="logo-container">
+            <span className="neon-text">Nevvy</span>
+          </div>
+        </Link>
       </div>
 
       <div className="navbar-center">
@@ -98,15 +98,16 @@ const Navbar = () => {
       </div>
       <div className="navbar-top">
         <div className="navbar-right">
-          <Search>
+          <Search style={{ backgroundColor: '#1b0749', border: '3px solid #8d66ad' }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Wyszukaj.."
-              inputProps={{ "aria-label": "search" }}
+              inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+
 
           <React.Fragment>
             <Box
@@ -125,7 +126,7 @@ const Navbar = () => {
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
                 >
-                  <Avatar sx={{ width: 26, height: 26, fontSize: "small" }}>
+                  <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
                     {user?.username.slice(0, 2).toUpperCase()}
                   </Avatar>
                 </IconButton>
@@ -151,31 +152,26 @@ const Navbar = () => {
                   },
                   "&:before": {
                     content: '""',
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "background.paper",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
+                    display: "none", // Dodana reguła CSS, aby ukryć pseudo-element ':before'
                   },
+                  backgroundColor: "rgba(27, 7, 73, 0.9)", // changed background color to rgba(27, 7, 73, 0.9) with opacity 0.9
+                  border: "3px solid #8d66ad", // changed border color to #8d66ad
+                  color: "white", // changed text color to white
                 },
               }}
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
               {user ? (
-                <>
-                  <Link to="/user-account">
-                    <MenuItem>
-                      <Avatar /> Moje konto
-                    </MenuItem>
-                  </Link>
-                  <Divider />
-                </>
+                <Link to="/user-account">
+                  <MenuItem>
+                    <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
+                      {user?.username.slice(0, 2).toUpperCase()}
+                    </Avatar> Moje konto
+                  </MenuItem>
+                </Link>
               ) : null}
+              <Divider />
               {user ? (
                 <Link to="/add-new">
                   <MenuItem>

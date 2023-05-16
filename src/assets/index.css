@@ -1150,6 +1150,19 @@ span {
   font-weight: bold;
 }
 
+.singlecomment-like{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color:#8d66ad;
+}
+
+.singlepost-like{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color:#8d66ad;
+}
 
 .home-main {
   display: flex;

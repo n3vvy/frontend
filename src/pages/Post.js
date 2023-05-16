@@ -102,10 +102,11 @@ const Post = () => {
           <div className="post-main">
             <p>{post?.content}</p>
           </div>
-          <div>
-            <Button onClick={() => addLike(post._id, user._id)} endIcon={<ThumbUpAltOutlined />}>LIKE</Button>
-            <p>{post?.likeValue || 0}</p>
-          </div>
+          <div className="singlepost-like">
+    <Button onClick={() => addLike(post._id, user._id)} style={{color: '#8d66ad'}} endIcon={<ThumbUpAltOutlined style={{color: '#8d66ad'}}/>}>LIKE</Button>
+    <p style={{color: '#8d66ad'}}>{post?.likeValue || 0}</p>
+</div>
+
           <div className="post-comments">
             <h2>Odpowiedzi:</h2>
             <AlertProvider>

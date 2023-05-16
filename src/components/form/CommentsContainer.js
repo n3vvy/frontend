@@ -14,7 +14,7 @@ const AddReply = (props) => {
       <Button
         onClick={() => setOpenReplyAdd(!openReplyAdd)}
         size="small"
-        sx={{ fontSize: "12px", height: "32px" }}
+        sx={{ fontSize: "14px", height: "32px", color: '#8d66ad' }}
       >
         Odpowiedz
       </Button>
@@ -109,8 +109,8 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
         <div className="comment-container" key={comment?._id}>
           <div className="comment-content">
             <div className="comment-left">
-              <Avatar sx={{ width: 26, height: 26, fontSize: "small" }}>
-                {comment?.user_id?.username.slice(0, 2).toUpperCase()}
+              <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
+                {user?.username.slice(0, 2).toUpperCase()}
               </Avatar>
             </div>
             <div className="comment-right">
@@ -124,12 +124,11 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
             </div>
           </div>
           <div className="comment-footer">
-            <div>
-              <Button onClick={() => addLike(comment._id, user._id)} endIcon={<ThumbUpOffAlt />}>
-                LIKE
-              </Button>
-              <p>{comment?.likes?.length || 0}</p>
+            <div className="singlecomment-like">
+              <Button onClick={() => addLike(comment._id, user._id)} style={{ color: '#8d66ad' }} endIcon={<ThumbUpOffAlt style={{ color: '#8d66ad' }} />}>LIKE</Button>
+              <p style={{ color: '#8d66ad' }}>{comment?.likes?.length || 0}</p>
             </div>
+
             <AddReply
               comment={comment}
               refreshComments={refreshComments} // przekazanie funkcji odświeżającej
@@ -137,6 +136,7 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
             {comment?.user_id?._id === user?._id && (
               <Button
                 size="small"
+                style={{ fontSize: "14px", color: '#8d66ad' }}
                 onClick={() => deleteComment(comment?._id, comment?.user_id)}
               >
                 USUŃ
@@ -146,7 +146,7 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
           <ShowReplies
             replies={comment?.replies}
             commentId={comment?._id}
-            refreshComments={refreshComments} 
+            refreshComments={refreshComments}
           ></ShowReplies>
         </div>
       ))}
