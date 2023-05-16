@@ -146,7 +146,7 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
           <ShowReplies
             replies={comment?.replies}
             commentId={comment?._id}
-            refreshComments={refreshComments} // przekazanie funkcji odświeżającej
+            refreshComments={refreshComments} 
           ></ShowReplies>
         </div>
       ))}
