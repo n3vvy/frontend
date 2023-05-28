@@ -13,13 +13,13 @@ const MyPost = () => {
         console.log(myPosts);
       try {
         const res = await userRequest.get(
-          `/post/get-my-posts/${currentUser._id}`
+          `/post/get-my-posts/${currentUser?._id}`
         );
         setMyPosts(res.data);
       } catch (err) {}
     };
     getMyPosts();
-  },[myPosts]);
+  },[setMyPosts]);
 
   return (
     <>

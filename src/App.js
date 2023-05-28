@@ -11,9 +11,11 @@ import Register from "./pages/Register";
 import { useSelector } from "react-redux";
 import RegisterSuccess from './pages/RegisterSuccess';
 import User from './pages/User';
+import UserProfilePage from './pages/UserProfilePage';
 import AddNew from './pages/AddNew';
 import Post from './pages/Post';
 import UserSettings from './pages/UserSettings'
+import ReportPostsInfo from './pages/ReportPostsInfo'
 
 const App = () => {
   const user = useSelector((state)=>state.user.currentUser);
@@ -24,8 +26,10 @@ const App = () => {
         <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>}></Route>
         <Route path="/register" element={ user?.isVerified === false ? <Navigate to="/confirm-register"/> : user?.isVerified === true ? <Navigate to="/"/> : <Register/>}></Route>
         <Route path='/confirm-register' element={<RegisterSuccess/>}></Route>
-        <Route path='/user-account' element={<User/>}></Route>
+        <Route path='/user/:username' element={<User/>}></Route>
+        <Route path='/users/:username' element={<UserProfilePage/>} /> {/* Zaktualizowano ścieżkę do elementu UserProfilePage */}
         <Route path='/UserSettings' element={<UserSettings/>}></Route>
+        <Route path='/ReportPostsInfo' element={user?.isAdmin===true?<ReportPostsInfo/>:<Home/>}></Route>
         <Route path='/add-new' element={!user ? <Navigate to="/"/> : <AddNew/>}></Route>
         <Route path="/post/:id" element={<Post/>}></Route>
       </Routes>

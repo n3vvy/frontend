@@ -12,6 +12,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { MoreVert, Share, Warning } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import ShareDialog from '../form/ShareDialog';
+import ReportedPosts from '../form/ReportedPosts';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -54,7 +55,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function LongMenuButton() {
+export default function LongMenuButton({postId}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -91,10 +92,7 @@ export default function LongMenuButton() {
           <ShareDialog></ShareDialog>
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <Warning />
-          Zgłoś post
-        </MenuItem>
+        <ReportedPosts postId = {postId}></ReportedPosts>
       </StyledMenu>
     </div>
   );

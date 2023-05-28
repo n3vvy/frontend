@@ -1,21 +1,18 @@
-// ...
-import { ThumbUpOffAlt, ThumbDownOffAlt, ArrowDropDown } from "@mui/icons-material";
+import { ThumbUpOffAlt, ArrowDropDown } from "@mui/icons-material";
 import { Avatar, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { convertToReadableDate } from "../../services/convertToReadableDate";
 import { publicRequest, userRequest } from "../../services/requestMethods";
 import AddComment from "../form/AddComment";
+import { Link } from 'react-router-dom';
 
 const AddReply = (props) => {
   const [openReplyAdd, setOpenReplyAdd] = useState(false);
+
   return (
-    <div className="add-reply">
-      <Button
-        onClick={() => setOpenReplyAdd(!openReplyAdd)}
-        size="small"
-        sx={{ fontSize: "14px", height: "32px", color: '#8d66ad' }}
-      >
+    <div className="add-reply" style={{ display: 'flex', alignItems: 'center' }}>
+      <Button onClick={() => setOpenReplyAdd(!openReplyAdd)} size="small" sx={{ fontSize: '14px', height: '32px', color: '#8d66ad' }}>
         Odpowiedz
       </Button>
 
@@ -65,6 +62,7 @@ const ShowReplies = (props) => {
             <CommentsDisplay
               comments={replies}
               refreshComments={props.refreshComments}
+              sortOption={props.sortOption}
             ></CommentsDisplay>
           )}
         </>
@@ -73,7 +71,7 @@ const ShowReplies = (props) => {
   );
 };
 
-const CommentsDisplay = ({ comments, refreshComments }) => {
+const CommentsDisplay = ({ comments, refreshComments, sortOption }) => {
   const user = useSelector((state) => state.user.currentUser);
 
   const addLike = async (commentId, userId) => {
@@ -103,9 +101,19 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
     }
   };
 
+  // Dodaj sortowanie komentarzy
+  const sortedComments = comments.sort((a, b) => {
+    if (sortOption === "newest") {
+      return new Date(b.date) - new Date(a.date); // sortowanie po najnowszych
+    } else if (sortOption === "popular") {
+      return b.likes.length - a.likes.length; // sortowanie po najpopularniejszych
+    }
+    return 0;
+  });
+
   return (
     <div className="comments-display">
-      {comments.map((comment) => (
+      {sortedComments.map((comment) => (
         <div className="comment-container" key={comment?._id}>
           <div className="comment-content">
             <div className="comment-left">
@@ -115,7 +123,9 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
             </div>
             <div className="comment-right">
               <div className="username-date">
+                <Link to={`/users/${comment?.user_id?.username}`}>
                 <h4 className="username">{comment?.user_id?.username}</h4>
+                </Link>
                 <span className="comment-date">
                   {convertToReadableDate(comment?.date)}
                 </span>
@@ -128,7 +138,6 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
               <Button onClick={() => addLike(comment._id, user._id)} style={{ color: '#8d66ad' }} endIcon={<ThumbUpOffAlt style={{ color: '#8d66ad' }} />}>LIKE</Button>
               <p style={{ color: '#8d66ad' }}>{comment?.likes?.length || 0}</p>
             </div>
-
             <AddReply
               comment={comment}
               refreshComments={refreshComments} // przekazanie funkcji odświeżającej
@@ -147,6 +156,7 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
             replies={comment?.replies}
             commentId={comment?._id}
             refreshComments={refreshComments}
+            sortOption={sortOption}
           ></ShowReplies>
         </div>
       ))}
@@ -156,11 +166,19 @@ const CommentsDisplay = ({ comments, refreshComments }) => {
 
 const CommentsContainer = ({ postId }) => {
   const [comments, setComments] = useState([]);
+  const [sortOption, setSortOption] = useState("newest"); // "newest" - najnowsze, "popular" - najpopularniejsze
 
   const refreshComments = async () => {
     try {
       const res = await publicRequest.get("/comment/comments/" + postId);
-      const sortedComments = res.data.sort((a, b) => b.likes.length - a.likes.length); // sortowanie komentarzy
+      let sortedComments;
+      if (sortOption === "newest") {
+        sortedComments = res.data.sort((a, b) => new Date(b.date) - new Date(a.date)); // sortowanie po najnowszych
+      } else if (sortOption ===
+
+        "popular") {
+        sortedComments = res.data.sort((a, b) => b.likes.length - a.likes.length); // sortowanie po najpopularniejszych
+      }
       setComments(sortedComments);
     } catch (err) {
       console.log("Problem z wczytaniem komentarzy");
@@ -169,13 +187,42 @@ const CommentsContainer = ({ postId }) => {
 
   useEffect(() => {
     refreshComments();
-  }, [postId]);
+  }, [postId, sortOption]);
 
   return (
-    <CommentsDisplay
-      comments={comments}
-      refreshComments={refreshComments}
-    />
+    <>
+      <div className="sorted-comment">
+        <Button
+          onClick={() => setSortOption("newest")}
+          style={{
+            color: '#8d66ad',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            textShadow: '1px 1px 10px #8d66ad'
+          }}
+        >
+          Najnowsze
+        </Button>
+
+        <Button
+          onClick={() => setSortOption("popular")}
+          style={{
+            color: '#8d66ad',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            textShadow: '1px 1px 10px #8d66ad'
+          }}
+        >
+          Najpopularniejsze
+        </Button>
+
+      </div>
+      <CommentsDisplay
+        comments={comments}
+        refreshComments={refreshComments}
+        sortOption={sortOption}
+      />
+    </>
   );
 };
 

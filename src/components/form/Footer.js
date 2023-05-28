@@ -46,10 +46,10 @@ const footerWidth = "30px";
         </div>
         <div className='footer-right'>
         <h4>Ogólne:</h4>
-            <Link to='/about-us' style={{textDecoration: "none", color: "#ffffff"}}>O nas</Link>
-            <Link to='/contact' style={{textDecoration: "none", color: "#ffffff"}}>Kontakt</Link>
-            <Link to='/privacy-policy' style={{textDecoration: "none", color: "#ffffff"}}>Polityka prywatności</Link>
-            <Link to='/terms-and-conditions' style={{textDecoration: "none", color: "#ffffff"}}>Warunki i zasady</Link>
+            <Link to='/about-us' >O nas</Link>
+            <Link to='/contact' >Kontakt</Link>
+            <Link to='/privacy-policy' >Polityka prywatności</Link>
+            <Link to='/terms-and-conditions'>Warunki i zasady</Link>
         </div>
         <div className='footer-social'>
         <h3>Social Media:</h3>

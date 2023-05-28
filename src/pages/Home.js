@@ -30,7 +30,7 @@ const Home = () => {
       try {
         const res = await axios.get(`${BASE_URL}post/get-all/${category}`);
         setNewestPosts(res.data.posts);
-      } catch (err) {}
+      } catch (err) { }
     };
     getNewestPosts();
   }, [category]);
@@ -39,7 +39,7 @@ const Home = () => {
     <>
       <div className="home-container">
         <Helmet>
-          <title>Strona główna - nevvy</title>
+          <title>Strona główna - Nevvy</title>
         </Helmet>
         <Navbar></Navbar>
         <CategorySlider
@@ -52,8 +52,33 @@ const Home = () => {
             <NewestPosts info={newstPosts}></NewestPosts>
           </section>
           <section className="home-main-right">
-          <h2>Najpopularniejsze posty: {findTitleByDesc(sliderItems, category)}</h2>
+            <h2>Najpopularniejsze posty: {findTitleByDesc(sliderItems, category)}</h2>
             <MostLikedPosts info={newstPosts}></MostLikedPosts>
+            <section className="admin-box">
+            <div className="adm-container">
+            <span className="adm-text">Administracja</span>
+          </div>
+              <div className="owner">
+                <p className="owner-name">Małgorzata Andrzejewska</p>
+                <p className="owner-role">♛ Właściciel</p>
+              </div>
+              <div className="owner">
+                <p className="owner-name">Weronika Paszkowska</p>
+                <p className="owner-role">♛ Właściciel</p>
+              </div>
+              <div className="owner">
+                <p className="owner-name">Maciej Kostecki</p>
+                <p className="owner-role">☁ Backend Developer</p>
+              </div>
+              <div className="owner">
+                <p className="owner-name">Adam Sumiński</p>
+                <p className="owner-role">⚜ Tester</p>
+              </div>
+              <div className="owner">
+                <p className="owner-name">Piotr Lonn</p>
+                <p className="owner-role">☁ Frontend Developer</p>
+              </div>
+            </section>
           </section>
         </section>
         <Footer></Footer>

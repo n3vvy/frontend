@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/form/Navbar";
+import { Link } from 'react-router-dom';
 import LongMenuButton from "../components/ui/LongMenuButton";
 import { sliderItems } from "../data/categoryGames";
 import { publicRequest, userRequest } from "../services/requestMethods";
@@ -18,6 +19,8 @@ import AlertProvider from "../context/react/AlertContext";
 import { AlertContext } from "../context/react/AlertContext";
 import Alerts from "../components/ui/Alerts";
 import ShareDialog from "../components/form/ShareDialog";
+
+
 
 const Post = () => {
   const location = useLocation();
@@ -77,10 +80,10 @@ const Post = () => {
           <div className="post-header">
             <h2>{post?.title}</h2>
             <div className="post-owner">
-            <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
-                    {user?.username.slice(0, 2).toUpperCase()}
-                  </Avatar>
-              <p>{post?.username}</p>
+              <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
+                {post?.username?.slice(0, 2).toUpperCase()}
+              </Avatar>
+              <Link to={`/users/${post?.username}`}>{post?.username}</Link>
             </div>
             <div className="post-header-desc">
               <div className="desc-left">
@@ -95,7 +98,7 @@ const Post = () => {
                 </p>
               </div>
               <div className="desc-right">
-                <LongMenuButton></LongMenuButton>
+                <LongMenuButton postId = {post?._id}></LongMenuButton>
               </div>
             </div>
           </div>
@@ -103,9 +106,9 @@ const Post = () => {
             <p>{post?.content}</p>
           </div>
           <div className="singlepost-like">
-    <Button onClick={() => addLike(post._id, user._id)} style={{color: '#8d66ad'}} endIcon={<ThumbUpAltOutlined style={{color: '#8d66ad'}}/>}>LIKE</Button>
-    <p style={{color: '#8d66ad'}}>{post?.likeValue || 0}</p>
-</div>
+            <Button onClick={() => addLike(post._id, user._id)} style={{ color: '#8d66ad' }} endIcon={<ThumbUpAltOutlined style={{ color: '#8d66ad' }} />}>LIKE</Button>
+            <p style={{ color: '#8d66ad' }}>{post?.likeValue || 0}</p>
+          </div>
 
           <div className="post-comments">
             <h2>Odpowiedzi:</h2>
