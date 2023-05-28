@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/form/Navbar'
 import { Helmet } from 'react-helmet'
+import ReportedPostsInfoTable from '../components/form/ReportedPostsInfoTable'
 
 const ReportPostsInfo = () => {
     return (
@@ -13,6 +14,7 @@ const ReportPostsInfo = () => {
             <div className='report-post-title'>
             <p>Zgłoszone posty</p>
             </div>
+            <ReportedPostsInfoTable></ReportedPostsInfoTable>
         </div>
     )
 }

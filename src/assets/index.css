@@ -229,6 +229,9 @@ input:-webkit-autofill:active {
   text-align: center;
 }
 
+.MuiTableCell-root.MuiTableCell-body.MuiTableCell-sizeMedium.css-1ijrop1-MuiTableCell-root {
+  background-color: #1b0749 !important;
+}
 
 
 .logo-container {
