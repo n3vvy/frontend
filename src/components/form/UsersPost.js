@@ -1,46 +1,36 @@
-import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { userRequest } from "../../services/requestMethods";
 import NewestPosts from "./NewestPosts";
 import { useParams } from "react-router-dom";
 
-const UsersPost = ({ identifier, username }) => {
-  const [userPosts, setUserPosts] = useState("");
-  const currentUser = useSelector((state) => state.user.currentUser);
+const UsersPost = (props) => {
+  const [userPosts, setUserPosts] = useState([]);
+  // const { username, user_id } = useParams();
 
   useEffect(() => {
     const getUserPosts = async () => {
       try {
-        let res;
-        if (!isNaN(identifier)) {
-          // Jeśli identifier jest liczbą, to wyszukaj posty po ID użytkownika
-          res = await userRequest.get(`/post/get-user-posts/${identifier}`);
-        } else {
-          // W przeciwnym razie wyszukaj posty po nazwie użytkownika
-          res = await userRequest.get(`/post/get-user-posts-by-username/${identifier}`);
-        }
+        const res = await userRequest.get(`/post/get-user-posts/${props.user_id}`);
         setUserPosts(res.data);
       } catch (err) {
         console.error(err);
       }
     };
+
     getUserPosts();
-  }, [identifier]);
+  }, [props.user_id]);
 
   return (
-    <>
+    <div>
+      <h5>{`Posty użytkownika ${props.username}:`}</h5>
       <div>
-        <h5>{`Posty użytkownika ${username}:`}</h5>
-        <div>
-          {userPosts ? (
-            <NewestPosts info={userPosts}></NewestPosts>
-          ) : (
-            "Niestety nie umiem tego zrobić ;c "
-          )}
-        </div>
+        {userPosts.length > 0 ? (
+          <NewestPosts info={userPosts} />
+        ) : (
+          <p>Brak postów użytkownika</p>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

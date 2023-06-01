@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/register" element={ user?.isVerified === false ? <Navigate to="/confirm-register"/> : user?.isVerified === true ? <Navigate to="/"/> : <Register/>}></Route>
         <Route path='/confirm-register' element={<RegisterSuccess/>}></Route>
         <Route path='/user/:username' element={<User/>}></Route>
-        <Route path='/users/:username' element={<UserProfilePage/>} /> {/* Zaktualizowano ścieżkę do elementu UserProfilePage */}
+        <Route path='/users/:username/:user_id' element={<UserProfilePage />} />
         <Route path='/UserSettings' element={<UserSettings/>}></Route>
         <Route path='/ReportPostsInfo' element={user?.isAdmin===true?<ReportPostsInfo/>:<Home/>}></Route>
         <Route path='/add-new' element={!user ? <Navigate to="/"/> : <AddNew/>}></Route>

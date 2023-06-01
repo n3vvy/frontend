@@ -99,7 +99,10 @@ const useStyles = makeStyles((theme) => ({
 
 const createReport = async (reportData) => {
   try {
-    const response = await axios.post("https://nevvy.herokuapp.com/api/report/", reportData);
+    const response = await axios.post(
+      "https://nevvy.herokuapp.com/api/report/",
+      reportData
+    );
     return response.data;
   } catch (error) {
     console.error("Błąd podczas tworzenia zgłoszenia:", error);
@@ -107,16 +110,16 @@ const createReport = async (reportData) => {
   }
 };
 
-const ReportedPosts = ({postId}) => {
+const ReportedPosts = ({ postId }) => {
   const user = useSelector((state) => state?.user.currentUser);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedReason, setSelectedReason] = useState("");
-  // const [userID, setUserID] = useState(user?._id);
   const [otherReason, setOtherReason] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [validationError, setValidationError] = useState(false); // New state for validation error
 
   const reasons = ["Naruszenie regulaminu", "Spam", "Nieodpowiednia treść", "Inne"];
 
@@ -130,6 +133,7 @@ const ReportedPosts = ({postId}) => {
     setOtherReason("");
     setSuccessMessage("");
     setErrorMessage("");
+    setValidationError(false); // Reset validation error state
   };
 
   const handleSubmit = async () => {
@@ -138,15 +142,23 @@ const ReportedPosts = ({postId}) => {
     const reportData = {
       post_id: postId,
       reporter_id: user?._id,
-      report_reason: selectedReason != "Inne" ? selectedReason: otherReason,
+      report_reason: selectedReason !== "Inne" ? selectedReason : otherReason,
       report_details: selectedReason === "Inne" ? otherReason : "",
     };
 
     try {
-      await createReport(reportData);
-      setSuccessMessage("Zgłoszenie zostało wysłane pomyślnie do Administracji forum!");
+      if (!selectedReason && !otherReason) {
+        setValidationError(true); // Set validation error state if no option is selected
+      } else {
+        await createReport(reportData);
+        setSuccessMessage(
+          "Zgłoszenie zostało wysłane pomyślnie do Administracji forum!"
+        );
+      }
     } catch (error) {
-      setErrorMessage("Wystąpił błąd podczas wysyłania zgłoszenia. Spróbuj ponownie później.");
+      setErrorMessage(
+        "Wystąpił błąd podczas wysyłania zgłoszenia. Spróbuj ponownie później."
+      );
     }
 
     setLoading(false);
@@ -214,11 +226,7 @@ const ReportedPosts = ({postId}) => {
               <Button onClick={handleClose} className={classes.cancelButton}>
                 Anuluj
               </Button>
-              <Button
-                onClick={handleSubmit}
-                color="primary"
-                disabled={selectedReason === "" && otherReason === ""}
-              >
+              <Button onClick={handleSubmit} color="primary">
                 Zgłoś
               </Button>
             </>
@@ -240,6 +248,21 @@ const ReportedPosts = ({postId}) => {
           </Button>
         </DialogActions>
       </Dialog>
+      {validationError && (
+        <Dialog open={true} onClose={() => setValidationError(false)}>
+          <DialogTitle className={classes.dialogTitle}>Błąd</DialogTitle>
+          <DialogContent className={classes.dialogContent}>
+            <p className={classes.successDialogText}>
+              Nie została wybrana żadna opcja i post nie został zgłoszony.
+            </p>
+          </DialogContent>
+          <DialogActions className={classes.successDialogActions}>
+            <Button onClick={() => setValidationError(false)} className={classes.cancelButton}>
+              Zamknij
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };

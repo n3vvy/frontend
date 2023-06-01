@@ -9,25 +9,25 @@ const UserProfile = () => {
   const { username } = useParams();
   const [userProfile, setUserProfile] = useState(null);
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        let res;
-        if (!isNaN(identifier)) {
-          // Jeśli identifier jest liczbą, to wyszukaj profil po ID
-          res = await publicRequest.get(`/users/profileById/${identifier}`);
-        } else {
-          // W przeciwnym razie wyszukaj profil po nazwie użytkownika
-          res = await publicRequest.get(`/users/profile/${identifier}`);
-        }
-        setUserProfile(res.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserProfile = async () => {
+  //     try {
+  //       let res;
+  //       if (!isNaN(identifier)) {
+  //         // Jeśli identifier jest liczbą, to wyszukaj profil po ID
+  //         res = await publicRequest.get(`/users/profileById/${identifier}`);
+  //       } else {
+  //         // W przeciwnym razie wyszukaj profil po nazwie użytkownika
+  //         res = await publicRequest.get(`/users/profile/${identifier}`);
+  //       }
+  //       setUserProfile(res.data);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
 
-    fetchUserProfile();
-  }, [identifier]);
+  //   fetchUserProfile();
+  // }, [identifier]);
 
   return (
     <section className='user-info'>

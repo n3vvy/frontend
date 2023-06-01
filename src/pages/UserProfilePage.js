@@ -6,7 +6,7 @@ import UsersPost from "../components/form/UsersPost";
 import { Helmet } from 'react-helmet';
 
 const UserProfilePage = () => {
-  const { username } = useParams();
+  const { username, user_id } = useParams();
 
   return (
     <div className="home-container">
@@ -19,7 +19,7 @@ const UserProfilePage = () => {
             <UserProfile username={username} />
           </section>
           <section className="user-main-right">
-            <UsersPost username={username} />
+            <UsersPost username={username} user_id={user_id} />
           </section>
         </div>
       </div>

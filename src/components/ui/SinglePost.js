@@ -7,7 +7,8 @@ const SinglePost = (props) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(props.content);
-
+  console.log(props)
+  
   async function handleDelete() {
     setIsDeleting(true);
     try {

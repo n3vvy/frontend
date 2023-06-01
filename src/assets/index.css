@@ -1298,7 +1298,7 @@ color: #8d66ad;
 
 .singlecomment-like{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 5px;
   color:#8d66ad;
 }

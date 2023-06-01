@@ -11,7 +11,7 @@ const AddReply = (props) => {
   const [openReplyAdd, setOpenReplyAdd] = useState(false);
 
   return (
-    <div className="add-reply" style={{ display: 'flex', alignItems: 'center' }}>
+    <div className="add-reply" style={{ display: 'block', alignItems: 'center' }}>
       <Button onClick={() => setOpenReplyAdd(!openReplyAdd)} size="small" sx={{ fontSize: '14px', height: '32px', color: '#8d66ad' }}>
         Odpowiedz
       </Button>
@@ -124,7 +124,7 @@ const CommentsDisplay = ({ comments, refreshComments, sortOption }) => {
             <div className="comment-right">
               <div className="username-date">
                 <Link to={`/users/${comment?.user_id?.username}`}>
-                <h4 className="username">{comment?.user_id?.username}</h4>
+                <h4 className="username" style={{ color: '#8d66ad' }}>{comment?.user_id?.username}</h4>
                 </Link>
                 <span className="comment-date">
                   {convertToReadableDate(comment?.date)}
@@ -135,8 +135,8 @@ const CommentsDisplay = ({ comments, refreshComments, sortOption }) => {
           </div>
           <div className="comment-footer">
             <div className="singlecomment-like">
-              <Button onClick={() => addLike(comment._id, user._id)} style={{ color: '#8d66ad' }} endIcon={<ThumbUpOffAlt style={{ color: '#8d66ad' }} />}>LIKE</Button>
-              <p style={{ color: '#8d66ad' }}>{comment?.likes?.length || 0}</p>
+              <Button onClick={() => addLike(comment._id, user._id)} endIcon={<ThumbUpOffAlt style={{ color: '#8d66ad' }} />}>LIKE</Button>
+              <p style={{ color: '#8d66ad', marginTop:"6px" }}>{comment?.likes?.length || 0}</p>
             </div>
             <AddReply
               comment={comment}
@@ -174,9 +174,7 @@ const CommentsContainer = ({ postId }) => {
       let sortedComments;
       if (sortOption === "newest") {
         sortedComments = res.data.sort((a, b) => new Date(b.date) - new Date(a.date)); // sortowanie po najnowszych
-      } else if (sortOption ===
-
-        "popular") {
+      } else if (sortOption === "popular") {
         sortedComments = res.data.sort((a, b) => b.likes.length - a.likes.length); // sortowanie po najpopularniejszych
       }
       setComments(sortedComments);

@@ -83,8 +83,9 @@ const Post = () => {
               <Avatar sx={{ width: 26, height: 26, fontSize: "small", backgroundColor: "#1b0749", color: "#ffffff", border: "2px solid #8d66ad" }}>
                 {post?.username?.slice(0, 2).toUpperCase()}
               </Avatar>
-              <Link to={`/users/${post?.username}`}>{post?.username}</Link>
+              <Link to={`/users/${post?.username}/${post.user_id}`}>{post?.username}</Link>
             </div>
+            {console.log(post)}
             <div className="post-header-desc">
               <div className="desc-left">
                 <p>
