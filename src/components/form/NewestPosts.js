@@ -15,6 +15,7 @@ const NewestPosts = (props) => {
           user_id={post.user_id} 
           key={post._id}
           category={post.category}
+          date={post.date}
         />
       );
     }

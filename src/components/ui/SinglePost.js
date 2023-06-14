@@ -21,20 +21,35 @@ const SinglePost = (props) => {
     }
   }
 
-  async function handleEdit() {
-    if (editedTitle === props.title && editedContent === props.content) {
-      setEditMessage("Nie została zmieniona żadna treść.");
-      return;
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString().slice(-2);
+    
+    const formattedDate = `${hours}:${minutes}  ${day}-${month}-${year}`;
+    return formattedDate;
+  }
+  
+
+  function handleEdit() {
+    const twoHoursAgo = Date.now() - 2 * 60 * 60 * 1000;
+    const postCreatedAt = new Date(props.date);
+  
+    if (postCreatedAt.getTime() < twoHoursAgo) {
+      alert("Tego postu nie można już edytować, ponieważ minęły już dwie godziny od czasu dodania postu.");
+    } else {
+      setIsEditing(true);
+      setEditMessage("");
     }
+  }
+  
+  
 
-    const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
-    const postCreatedAt = new Date(props.createdAt);
-
-    if (postCreatedAt < twoHoursAgo) {
-      setEditMessage("Minęły dwie godziny, nie można już edytować postu.");
-      return;
-    }
-
+  async function saveChanges() {
+    // Logika zapisywania zmian
     try {
       await userRequest.put(`/post/edit/${props.id}`, {
         user_id: props.user_id,
@@ -86,7 +101,7 @@ const SinglePost = (props) => {
                 />
               </div>
             </div>
-            <Button onClick={handleEdit} disabled={isDeleting}>
+            <Button onClick={saveChanges} disabled={isDeleting}>
               Zapisz zmiany
             </Button>
             <p>{editMessage}</p>
@@ -94,9 +109,10 @@ const SinglePost = (props) => {
         ) : (
           <>
             <Link to={`/post/${props.id}`}>
-              <h1>{props.title}</h1>
+              <h1>Tytuł: {props.title}</h1>
+              <p>Data utworzenia: {formatDate(props.date)}</p>
             </Link>
-            <p>{props.content}</p>
+            <p>Treść: {props.content}</p>
           </>
         )}
       </div>
@@ -124,10 +140,7 @@ const SinglePost = (props) => {
                   </span>
                 )}
               </Button>
-              <Button
-                onClick={() => setIsEditing(true)}
-                disabled={isEditing || isDeleting}
-              >
+              <Button onClick={handleEdit} disabled={isEditing || isDeleting}>
                 {isEditing ? (
                   <span style={{ color: "#8d66ad", fontSize: "16px" }}>
                     Edytowanie...
