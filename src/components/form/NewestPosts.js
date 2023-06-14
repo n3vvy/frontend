@@ -12,7 +12,7 @@ const NewestPosts = (props) => {
           title={post.title}
           content={post.content}
           username={post.username}
-          user_id={post.user_id} 
+          user_id={post.user_id}
           key={post._id}
           category={post.category}
           date={post.date}

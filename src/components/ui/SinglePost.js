@@ -29,11 +29,11 @@ const SinglePost = (props) => {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear().toString().slice(-2);
-    
+
     const formattedDate = `${hours}:${minutes}  ${day}-${month}-${year}`;
     return formattedDate;
   }
-  
+
   const handleTitleChange = (e) => {
     setEditedTitle(e.target.value);
     setIsFormChanged(true);
@@ -47,7 +47,7 @@ const SinglePost = (props) => {
   function handleEdit() {
     const twoHoursAgo = Date.now() - 2 * 60 * 60 * 1000;
     const postCreatedAt = new Date(props.date);
-  
+
     if (postCreatedAt.getTime() < twoHoursAgo) {
       alert("Tego postu nie można już edytować, ponieważ minęły już dwie godziny od czasu dodania postu.");
     } else {
@@ -59,10 +59,10 @@ const SinglePost = (props) => {
 
   async function saveChanges() {
     if (!isFormChanged) {
-      setEditMessage("Nie udało się z edytować postu, ponieważ nie zostały wprowadzone żadne zmiany.");
+      setEditMessage("Nie udało się zedytować postu, ponieważ nie zostały wprowadzone żadne zmiany.");
       return;
     }
-  
+
     try {
       await userRequest.put(`/post/edit/${props.id}`, {
         user_id: props.user_id,
@@ -71,11 +71,11 @@ const SinglePost = (props) => {
         category: props.category
       });
       setIsEditing(false);
-      setEditMessage("Edytowałeś post prawidłowo!");
+      setEditMessage("Post został pomyślnie zedytowany!");
       window.location.reload(); // Odśwież stronę
     } catch (error) {
       console.error(error);
-      setEditMessage("Niestety nie udało się edytować postu!");
+      setEditMessage("Niestety nie udało się zedytować postu!");
     }
   }
 
@@ -100,20 +100,22 @@ const SinglePost = (props) => {
                   onChange={handleTitleChange}
                 />
               </div>
-              <div style={{ flex: 1, marginLeft: "20px" }}>
-                <p style={{ color: "#8d66ad", fontWeight: "bold", textShadow: "1px 1px 10px #8d66ad" }}>
-                  Treść:
-                </p>
-                <textarea
-                  style={{
-                    width: "100%",
-                    color: "#000000",
-                    fontSize: "16px",
-                  }}
-                  value={editedContent}
-                  onChange={handleContentChange}
-                />
-              </div>
+              {props.onlyTitle ? null : (
+                <div style={{ flex: 1, marginLeft: "20px" }}>
+                  <p style={{ color: "#8d66ad", fontWeight: "bold", textShadow: "1px 1px 10px #8d66ad" }}>
+                    Treść:
+                  </p>
+                  <textarea
+                    style={{
+                      width: "100%",
+                      color: "#000000",
+                      fontSize: "16px",
+                    }}
+                    value={editedContent}
+                    onChange={handleContentChange}
+                  />
+                </div>
+              )}
             </div>
             <Button onClick={saveChanges} disabled={isDeleting}>
               Zapisz zmiany
@@ -124,9 +126,9 @@ const SinglePost = (props) => {
           <>
             <Link to={`/post/${props.id}`}>
               <h1>Tytuł: {props.title}</h1>
-              <p>Data utworzenia: {formatDate(props.date)}</p>
+              {props.onlyTitle ? null : <p>Data utworzenia: {formatDate(props.date)}</p>}
             </Link>
-            <p>Treść: {props.content}</p>
+            {props.onlyTitle ? null : <p>Treść: {props.content}</p>}
           </>
         )}
       </div>

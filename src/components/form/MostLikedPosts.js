@@ -18,12 +18,13 @@ const MostLikedPosts = (props) => {
         title={post.title}
         username={post.username}
         user_id={post.user_id}
-        key={post.id}
+        key={post._id}
+        onlyTitle={true}
       ></SinglePost>
     );
   });
 
-  return <div className="newest-posts">{columns}</div>;
+  return <div className="most-liked-posts">{columns}</div>;
 };
 
 export default MostLikedPosts;
