@@ -9,6 +9,7 @@ const SinglePost = (props) => {
   const [editedTitle, setEditedTitle] = useState(props.title);
   const [editedContent, setEditedContent] = useState(props.content);
   const [editMessage, setEditMessage] = useState("");
+  const [isFormChanged, setIsFormChanged] = useState(false);
 
   async function handleDelete() {
     setIsDeleting(true);
@@ -33,6 +34,15 @@ const SinglePost = (props) => {
     return formattedDate;
   }
   
+  const handleTitleChange = (e) => {
+    setEditedTitle(e.target.value);
+    setIsFormChanged(true);
+  };
+
+  const handleContentChange = (e) => {
+    setEditedContent(e.target.value);
+    setIsFormChanged(true);
+  };
 
   function handleEdit() {
     const twoHoursAgo = Date.now() - 2 * 60 * 60 * 1000;
@@ -43,13 +53,16 @@ const SinglePost = (props) => {
     } else {
       setIsEditing(true);
       setEditMessage("");
+      setIsFormChanged(false);
     }
   }
-  
-  
 
   async function saveChanges() {
-    // Logika zapisywania zmian
+    if (!isFormChanged) {
+      setEditMessage("Nie udało się z edytować postu, ponieważ nie zostały wprowadzone żadne zmiany.");
+      return;
+    }
+  
     try {
       await userRequest.put(`/post/edit/${props.id}`, {
         user_id: props.user_id,
@@ -59,6 +72,7 @@ const SinglePost = (props) => {
       });
       setIsEditing(false);
       setEditMessage("Edytowałeś post prawidłowo!");
+      window.location.reload(); // Odśwież stronę
     } catch (error) {
       console.error(error);
       setEditMessage("Niestety nie udało się edytować postu!");
@@ -83,7 +97,7 @@ const SinglePost = (props) => {
                     fontSize: "16px",
                   }}
                   value={editedTitle}
-                  onChange={(e) => setEditedTitle(e.target.value)}
+                  onChange={handleTitleChange}
                 />
               </div>
               <div style={{ flex: 1, marginLeft: "20px" }}>
@@ -97,7 +111,7 @@ const SinglePost = (props) => {
                     fontSize: "16px",
                   }}
                   value={editedContent}
-                  onChange={(e) => setEditedContent(e.target.value)}
+                  onChange={handleContentChange}
                 />
               </div>
             </div>
