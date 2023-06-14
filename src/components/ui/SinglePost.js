@@ -6,9 +6,10 @@ import { userRequest } from "../../services/requestMethods";
 const SinglePost = (props) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(props.title);
   const [editedContent, setEditedContent] = useState(props.content);
-  console.log(props)
-  
+  const [editMessage, setEditMessage] = useState("");
+
   async function handleDelete() {
     setIsDeleting(true);
     try {
@@ -21,32 +22,82 @@ const SinglePost = (props) => {
   }
 
   async function handleEdit() {
+    if (editedTitle === props.title && editedContent === props.content) {
+      setEditMessage("Nie została zmieniona żadna treść.");
+      return;
+    }
+
+    const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
+    const postCreatedAt = new Date(props.createdAt);
+
+    if (postCreatedAt < twoHoursAgo) {
+      setEditMessage("Minęły dwie godziny, nie można już edytować postu.");
+      return;
+    }
+
     try {
-      await userRequest.put(`/post/${props.id}`, { content: editedContent });
+      await userRequest.put(`/post/edit/${props.id}`, {
+        user_id: props.user_id,
+        title: editedTitle,
+        content: editedContent,
+        category: props.category
+      });
       setIsEditing(false);
+      setEditMessage("Edytowałeś post prawidłowo!");
     } catch (error) {
       console.error(error);
+      setEditMessage("Niestety nie udało się edytować postu!");
     }
   }
 
   return (
     <div className="single-post">
       <div className="single-post-left">
-        <Link to={`/post/${props.id}`}>
-          <h1>{props.title}</h1>
-        </Link>
         {isEditing ? (
           <>
-            <textarea
-              value={editedContent}
-              onChange={(e) => setEditedContent(e.target.value)}
-            />
+            <div style={{ display: "flex", marginBottom: "10px" }}>
+              <div style={{ flex: 1 }}>
+                <p style={{ color: "#8d66ad", fontWeight: "bold", textShadow: "1px 1px 10px #8d66ad" }}>
+                  Tytuł:
+                </p>
+                <input
+                  style={{
+                    width: "100%",
+                    backgroundColor: "#8d66ad",
+                    color: "#000000",
+                    fontSize: "16px",
+                  }}
+                  value={editedTitle}
+                  onChange={(e) => setEditedTitle(e.target.value)}
+                />
+              </div>
+              <div style={{ flex: 1, marginLeft: "20px" }}>
+                <p style={{ color: "#8d66ad", fontWeight: "bold", textShadow: "1px 1px 10px #8d66ad" }}>
+                  Treść:
+                </p>
+                <textarea
+                  style={{
+                    width: "100%",
+                    color: "#000000",
+                    fontSize: "16px",
+                  }}
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                />
+              </div>
+            </div>
             <Button onClick={handleEdit} disabled={isDeleting}>
               Zapisz zmiany
             </Button>
+            <p>{editMessage}</p>
           </>
         ) : (
-          <p>{props.content}</p>
+          <>
+            <Link to={`/post/${props.id}`}>
+              <h1>{props.title}</h1>
+            </Link>
+            <p>{props.content}</p>
+          </>
         )}
       </div>
       <div className="single-post-right">
@@ -54,7 +105,7 @@ const SinglePost = (props) => {
           {props.username ? (
             <>
               Nadesłane przez:{" "}
-              <Link to={`/users/${props.username}`}>
+              <Link to={`/users/${props.username}/${props.user_id}`}>
                 <span style={{ color: "#8d66ad", fontSize: "16px" }}>
                   {props.username}
                 </span>

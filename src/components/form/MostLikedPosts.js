@@ -17,6 +17,7 @@ const MostLikedPosts = (props) => {
         id={post._id}
         title={post.title}
         username={post.username}
+        user_id={post.user_id}
         key={post.id}
       ></SinglePost>
     );

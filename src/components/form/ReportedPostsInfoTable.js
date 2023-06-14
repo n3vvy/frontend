@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Collapse, Box, Alert, Button } from '@mui/material';
+import { Link } from "react-router-dom";
+import { userRequest } from '../../services/requestMethods';
 
 const ReportedPostsInfoTable = () => {
     const [reports, setReports] = useState([]);
@@ -9,12 +11,16 @@ const ReportedPostsInfoTable = () => {
     useEffect(() => {
         axios.get('https://nevvy.herokuapp.com/api/report/all-reports')
             .then(response => {
-                setReports(response.data);
+                const sortedReports = response.data.sort((a, b) => new Date(b.report_date) - new Date(a.report_date));
+                setReports(sortedReports);
             })
             .catch(error => {
                 console.error('There was an error!', error);
             });
     }, []);
+
+
+    
 
     const handleClick = (id) => {
         setOpen(prevOpen => ({
@@ -40,8 +46,19 @@ const ReportedPostsInfoTable = () => {
     };
 
     const handleDelete = (id) => {
-        // Implement delete functionality here
-    };
+        userRequest
+          .delete(`https://nevvy.herokuapp.com/api/post/deleteByAdmin/${id}`)
+          .then((response) => {
+            // Aktualizuj listę zgłoszeń po usunięciu
+            setReports((prevReports) =>
+              prevReports.filter((report) => report._id !== id)
+            );
+          })
+          .catch((error) => {
+            console.error('There was an error deleting the post!', error);
+          });
+      };
+      
 
     return (
         <TableContainer component={Paper}>
@@ -61,12 +78,12 @@ const ReportedPostsInfoTable = () => {
                         <React.Fragment key={report._id}>
                             <TableRow onClick={() => handleClick(report._id)}>
                                 <TableCell style={tableCellStyle}>{report._id}</TableCell>
-                                <TableCell style={tableCellStyle}>{report.post_id}</TableCell>
+                                <TableCell style={tableCellStyle}><Link to={`/post/${report.post_id}`}>{report.post_id}</Link></TableCell>
                                 <TableCell style={tableCellStyle}>{report.report_reason}</TableCell>
                                 <TableCell style={tableCellStyle}>{report.isResolved ? "Tak" : "Nie"}</TableCell>
                                 <TableCell style={tableCellStyle}>{new Date(report.report_date).toLocaleString()}</TableCell>
                                 <TableCell style={tableCellStyle}>
-                                    <Button variant="contained" color="secondary" onClick={() => handleDelete(report._id)}>Usuń</Button>
+                                    <Button variant="contained" color="secondary" onClick={() => handleDelete(report.post_id)}>Usuń</Button>
                                 </TableCell>
                             </TableRow>
                             <TableRow>

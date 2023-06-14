@@ -123,7 +123,7 @@ const CommentsDisplay = ({ comments, refreshComments, sortOption }) => {
             </div>
             <div className="comment-right">
               <div className="username-date">
-                <Link to={`/users/${comment?.user_id?.username}`}>
+              <Link to={`/users/${comment?.user_id?.username}/${comment?.user_id?._id}`}>
                 <h4 className="username" style={{ color: '#8d66ad' }}>{comment?.user_id?.username}</h4>
                 </Link>
                 <span className="comment-date">
