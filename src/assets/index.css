@@ -304,6 +304,7 @@ span {
   color: #8d66ad;
   font-size: 60px;
   font-family: "Gang of three", cursive;
+  
 }
 
 span {
@@ -1088,7 +1089,10 @@ color: #8d66ad;
   }
 }
 
-
+.dialog-report{
+  border: 2px solid #8d66ad;
+  border-radius: 12px;
+}
 .register-form-confirm-button span:nth-child(3) {
   bottom: 0;
   right: -100%;
@@ -1501,6 +1505,8 @@ color: #8d66ad;
   text-shadow: 1px 1px 10px #8d66ad;
 }
 
+
+
 .footer-left h5 {
   color: #8d66ad;
   font-weight: bold;
@@ -1527,11 +1533,17 @@ color: #8d66ad;
 }
 
 
+.role-color {
+  background: url(https://i.imgur.com/kmP7ndP.gif);
+}
+
+
 .footer-right  {
   color: #8d66ad;
   font-weight: bold;
   text-shadow: 1px 1px 10px #8d66ad;
 }
+
 
 
 .h21 {
@@ -1709,6 +1721,10 @@ textarea {
   margin-top: 5px;
   margin-left: 31px;
 }
+
+
+
+
 
 .add-reply {
   width: 66vw;

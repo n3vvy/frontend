@@ -39,9 +39,12 @@ const useStyles = makeStyles((theme) => ({
     color: "#8d66ad",
     fontWeight: "bold",
     textShadow: "1px 1px 10px #8d66ad",
+    borderTopLeftRadius: '12px',  
+    borderTopRightRadius: '12px', 
   },
   dialogContent: {
     backgroundColor: "#1b0749",
+    padding: theme.spacing(2),
   },
   otherReasonInput: {
     "& label": {
@@ -67,7 +70,10 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogActions: {
     backgroundColor: "#1b0749",
+    borderBottomLeftRadius: '12px',  
+    borderBottomRightRadius: '12px', 
   },
+  
   cancelButton: {
     color: "#8d66ad",
     fontWeight: "bold",
@@ -181,8 +187,9 @@ const ReportedPosts = ({ postId }) => {
         Zgłoś post
       </MenuItem>
       <Dialog open={open} onClose={handleClose}>
+        <div className="dialog-report">
         <DialogTitle className={classes.dialogTitle}>Zgłoś post</DialogTitle>
-        <DialogContent className={classes.dialogContent}>
+        <DialogContent className={`${classes.dialogContent} MuiPaper-root`}>
           <FormControl component="fieldset">
             {reasons.map((reason) => (
               <FormControlLabel
@@ -232,6 +239,7 @@ const ReportedPosts = ({ postId }) => {
             </>
           )}
         </DialogActions>
+        </div>
       </Dialog>
       <Dialog open={successMessage !== "" || errorMessage !== ""} onClose={handleClose}>
         <DialogTitle className={classes.successDialogTitle}>

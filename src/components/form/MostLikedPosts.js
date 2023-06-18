@@ -20,6 +20,7 @@ const MostLikedPosts = (props) => {
         user_id={post.user_id}
         key={post._id}
         onlyTitle={true}
+        isMostLiked={true} // Dodaj to
       ></SinglePost>
     );
   });

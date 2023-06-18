@@ -9,6 +9,7 @@ import { BASE_URL } from "../services/requestMethods";
 import Footer from "../components/form/Footer";
 import CategorySlider from "../components/ui/CategorySlider";
 import { sliderItems } from "../data/categoryGames";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [newstPosts, setNewestPosts] = useState("");
@@ -59,24 +60,28 @@ const Home = () => {
             <span className="adm-text">Administracja</span>
           </div>
               <div className="owner">
-                <p className="owner-name">Małgorzata Andrzejewska</p>
-                <p className="owner-role">♛ Właściciel</p>
+              <Link to={`http://localhost:3000/users/Goha/63bfc990d8272b5ee538fe11`}>
+                <p className="owner-name"><div className="role-color">Małgorzata Andrzejewska</div></p>
+                </Link>
+                <p className="owner-role"><div className="role-color">♛ Właściciel</div></p>
               </div>
               <div className="owner">
-                <p className="owner-name">Weronika Paszkowska</p>
-                <p className="owner-role">♛ Właściciel</p>
+                <p className="owner-name"><div className="role-color">Weronika Paszkowska</div></p>
+                <p className="owner-role"><div className="role-color">♛ Właściciel</div></p>
               </div>
               <div className="owner">
-                <p className="owner-name">Maciej Kostecki</p>
-                <p className="owner-role">☁ Backend Developer</p>
+                <p className="owner-name"><div className="role-color">Maciej Kostecki</div></p>
+                <p className="owner-role"><div className="role-color">☁ Backend Developer</div></p>
               </div>
               <div className="owner">
-                <p className="owner-name">Adam Sumiński</p>
-                <p className="owner-role">⚜ Tester</p>
+                <p className="owner-name"><div className="role-color">Adam Sumiński</div></p>
+                <p className="owner-role"><div className="role-color">⚜ Tester</div></p>
               </div>
               <div className="owner">
-                <p className="owner-name">Piotr Lonn</p>
-                <p className="owner-role">☁ Frontend Developer</p>
+              <Link to={`http://localhost:3000/users/LONNEKXDD/642ddb8c08c989353be41b18`}>
+                <p className="owner-name"><div className="role-color">Piotr Lonn</div></p>
+                </Link>
+                <p className="owner-role"><div className="role-color">☁ Frontend Developer</div></p>
               </div>
             </section>
           </section>
