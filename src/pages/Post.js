@@ -49,7 +49,6 @@ const Post = () => {
       setPost((prevPost) => {
         return { ...prevPost, likeValue: response.data.post.likeValue };
       });
-      // alert("Pomyślnie zaktualizowano polubienia posta.");
     } catch (error) {
       console.error(error);
       // alert("Wystąpił błąd podczas aktualizacji polubień posta. Spróbuj ponownie później.");
