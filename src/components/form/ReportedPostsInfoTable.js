@@ -45,19 +45,33 @@ const ReportedPostsInfoTable = () => {
         border: '2px solid #8d66ad',
     };
 
-    const handleDelete = (id) => {
+    const handleDelete = (postId, reportId) => {
         userRequest
-          .delete(`https://nevvy.herokuapp.com/api/post/deleteByAdmin/${id}`)
+          .delete(`https://nevvy.herokuapp.com/api/post/deleteByAdmin/${postId}`)
           .then((response) => {
             // Aktualizuj listę zgłoszeń po usunięciu
             setReports((prevReports) =>
-              prevReports.filter((report) => report._id !== id)
+              prevReports.filter((report) => report.post_id !== postId)
             );
           })
           .catch((error) => {
             console.error('There was an error deleting the post!', error);
           });
+          
+          userRequest
+          .delete(`https://nevvy.herokuapp.com/api/report/${reportId}`)
+          .then((response) => {
+            // Aktualizuj listę zgłoszeń po usunięciu
+            setReports((prevReports) =>
+              prevReports.filter((report) => report._id !== reportId)
+            );
+          })
+          .catch((error) => {
+            console.error('There was an error deleting the report!', error);
+          });
       };
+
+
       
 
     return (
@@ -83,7 +97,7 @@ const ReportedPostsInfoTable = () => {
                                 <TableCell style={tableCellStyle}>{report.isResolved ? "Tak" : "Nie"}</TableCell>
                                 <TableCell style={tableCellStyle}>{new Date(report.report_date).toLocaleString()}</TableCell>
                                 <TableCell style={tableCellStyle}>
-                                    <Button variant="contained" color="secondary" onClick={() => handleDelete(report.post_id)}>Usuń</Button>
+                                    <Button variant="contained" color="secondary" onClick={() => handleDelete(report.post_id, report._id)}>Usuń</Button>
                                 </TableCell>
                             </TableRow>
                             <TableRow>

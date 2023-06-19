@@ -23,13 +23,6 @@ const UserInfo = () => {
             <span></span>
             <span></span>
             <span></span>
-            Zmień avatar
-          </a>
-          <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
             Usuń konto
           </a>
         </form>
