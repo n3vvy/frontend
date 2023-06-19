@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { userRequest } from "../../services/requestMethods";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Paper } from "@mui/material";
 import { styled } from "@mui/system";
+import { useSelector } from "react-redux";
 
 const CustomFormLabel = styled("label")`
   color: #8d66ad;
@@ -45,6 +46,9 @@ const SinglePost = (props) => {
   const [editedContent, setEditedContent] = useState(props.content);
   const [editMessage, setEditMessage] = useState("");
   const [isFormChanged, setIsFormChanged] = useState(false);
+  const loggedUser = useSelector((state) => state.user);
+  console.log(loggedUser.currentUser._id)
+  console.log(props)
 
   async function handleDelete() {
     setIsDeleting(true);
@@ -143,24 +147,28 @@ const SinglePost = (props) => {
             </>
           ) : (
             <>
-              <Button onClick={handleDelete} disabled={isDeleting}>
-                {isDeleting ? (
-                  <span style={{ color: "#8d66ad", fontSize: "16px" }}>
-                    Usuwanie...
-                  </span>
-                ) : (
-                  <span style={{ color: "#8d66ad", fontSize: "16px" }}>
-                    Usuń
-                  </span>
-                )}
-              </Button>
-              <Button onClick={handleEdit} disabled={isDeleting}>
-                Edytuj
-              </Button>
-            </>
-          )}
-        </p>
-      </div>
+            {loggedUser.currentUser._id === props.user_id &&(
+              <>
+                <Button onClick={handleDelete} disabled={isDeleting}>
+                  {isDeleting ? (
+                    <span style={{ color: "#8d66ad", fontSize: "16px" }}>
+                      Usuwanie...
+                    </span>
+                  ) : (
+                    <span style={{ color: "#8d66ad", fontSize: "16px" }}>
+                      Usuń
+                    </span>
+                  )}
+                </Button>
+                <Button onClick={handleEdit} disabled={isDeleting}>
+                  Edytuj
+                </Button>
+              </>
+            )}
+          </>
+        )}
+      </p>
+    </div>
 
       {/* Okno dialogowe edycji */}
       <Dialog open={isDialogOpen} onClose={handleCloseDialog} PaperComponent={CustomDialogPaper}>
