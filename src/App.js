@@ -14,8 +14,9 @@ import User from './pages/User';
 import UserProfilePage from './pages/UserProfilePage';
 import AddNew from './pages/AddNew';
 import Post from './pages/Post';
-import UserSettings from './pages/UserSettings'
-import ReportPostsInfo from './pages/ReportPostsInfo'
+import UserSettings from './pages/UserSettings';
+import ReportPostsInfo from './pages/ReportPostsInfo';
+import ResetPasswordSuccess from './pages/ResetPasswordSuccess'
 
 const App = () => {
   const user = useSelector((state)=>state.user.currentUser);
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>}></Route>
         <Route path="/register" element={ user?.isVerified === false ? <Navigate to="/confirm-register"/> : user?.isVerified === true ? <Navigate to="/"/> : <Register/>}></Route>
         <Route path='/confirm-register' element={<RegisterSuccess/>}></Route>
+        <Route path="/reset-password/:resetToken" element={<ResetPasswordSuccess/>}/>
         <Route path='/user/:username' element={<User/>}></Route>
         <Route path='/users/:username/:user_id' element={<UserProfilePage />} />
         <Route path='/UserSettings' element={<UserSettings/>}></Route>

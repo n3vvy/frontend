@@ -1,15 +1,23 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from "react-redux";
 
 const UserInfo = () => {
-    const loggedUser = useSelector((state) => state.user);
-    console.log(loggedUser);
+  const loggedUser = useSelector((state) => state.user);
+  console.log(loggedUser);
+
+  const isAdmin = loggedUser?.currentUser?.isAdmin;
+
   return (
     <section className='user-info'>
-    <h21>Informacje o użytkowniku:</h21>
-    <p><b>Nazwa: </b>{loggedUser?.currentUser?.username ?? "brak"}</p>
+      <h2>Informacje o użytkowniku:</h2>
+      <p><b>Nazwa: </b>{loggedUser?.currentUser?.username ?? "brak"}</p>
+      {isAdmin ? (
+        <p><b>Rola: </b>Administrator</p>
+      ) : (
+        <p><b>Rola: </b>Użytkownik</p>
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default UserInfo
+export default UserInfo;

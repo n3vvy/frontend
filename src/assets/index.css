@@ -236,6 +236,7 @@ input:-webkit-autofill:active {
 
 .logo-container {
   position: relative;
+  margin-left: 7vh;
 }
 
 .neon-text {
@@ -772,19 +773,26 @@ color: #8d66ad;
   display: block;
 }
 
+.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-12wi0s0-MuiButtonBase-root-MuiMenuItem-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .login-box-user-sett {
-  position: absolute;
-  top: 70%;
+  /* position: absolute; */
+  /* top: 70%; */
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
-  left: 50%;
+  /* left: 50%; */
   width: 400px;
   text-align: center;
-  padding: 40px;
-  transform: translate(-50%, -50%);
+  padding: 15px;
+  /* transform: translate(-50%, -50%); */
   background: transparent;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   border-style: solid;
   border-color: #8d66ad;
   box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
@@ -1020,7 +1028,9 @@ color: #8d66ad;
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  color: #ffffff;
+  color: #8d66ad;
+  font-weight: bold;
+  text-shadow: 1px 1px 10px #8d66ad;
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -1246,14 +1256,18 @@ color: #8d66ad;
 }
 
 .navbar-wrapper {
-  /* background: url(https://i.imgur.com/4JgrHID.jpg); */
+  background: url(https://i.imgur.com/dmPIoZv.png) no-repeat;
   background-color: #1b0749;
   color: #ffffff;
   height: 45vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-size: cover;
+  padding-bottom: 80px;
 }
+
+
 
 
 
@@ -1328,7 +1342,7 @@ color: #8d66ad;
   display: flex;
   justify-content: center;
   background:  #1b0749;
-  margin-top: 10px;
+  margin-top: 5vh;
   /* border-style: solid;
   border-color: black; */
 }
@@ -1381,7 +1395,11 @@ h5 {
 
 .register-confirm-main p {
   text-align: center;
+  color: #8d66ad;
   width: 90vw;
+  font-size: 2vw;
+  font-weight: bold;
+  text-shadow: 1px 1px 10px #8d66ad;
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-1o011v7-MuiButtonBase-root-MuiButton-root {

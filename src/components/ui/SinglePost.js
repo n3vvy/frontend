@@ -14,7 +14,7 @@ const CustomFormLabel = styled("label")`
 
 const CustomDialogTitle = styled(DialogTitle)`
   color: #8d66ad;
-  font-weight: bold;
+
   text-shadow: 1px 1px 10px #8d66ad;
 `;
 
@@ -47,8 +47,11 @@ const SinglePost = (props) => {
   const [editMessage, setEditMessage] = useState("");
   const [isFormChanged, setIsFormChanged] = useState(false);
   const loggedUser = useSelector((state) => state.user);
-  console.log(loggedUser.currentUser._id)
+  // console.log(loggedUser.currentUser._id)
   console.log(props)
+
+
+
 
   async function handleDelete() {
     setIsDeleting(true);
@@ -147,15 +150,15 @@ const SinglePost = (props) => {
             </>
           ) : (
             <>
-            {loggedUser.currentUser._id === props.user_id &&(
+            {loggedUser?.currentUser?._id === props.user_id &&(
               <>
                 <Button onClick={handleDelete} disabled={isDeleting}>
                   {isDeleting ? (
-                    <span style={{ color: "#8d66ad", fontSize: "16px" }}>
+                    <span style={{ color: "#8d66ad", fontSize: "16px", fontWeight: "bold" }}>
                       Usuwanie...
                     </span>
                   ) : (
-                    <span style={{ color: "#8d66ad", fontSize: "16px" }}>
+                    <span style={{ color: "#8d66ad", fontSize: "16px", fontWeight: "bold" }}>
                       Usuń
                     </span>
                   )}

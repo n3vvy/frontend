@@ -60,13 +60,15 @@ const Home = () => {
             <span className="adm-text">Administracja</span>
           </div>
               <div className="owner">
-              <Link to={`http://localhost:3000/users/Goha/63bfc990d8272b5ee538fe11`}>
+              <Link to={`https://nevvy.live/users/Goha/63bfc990d8272b5ee538fe11`}>
                 <p className="owner-name"><div className="role-color">Małgorzata Andrzejewska</div></p>
                 </Link>
                 <p className="owner-role"><div className="role-color">♛ Właściciel</div></p>
               </div>
               <div className="owner">
+              <Link to={`https://nevvy.live/users/Werka/63c9215d331d58e654d1cfd0`}>
                 <p className="owner-name"><div className="role-color">Weronika Paszkowska</div></p>
+                </Link>
                 <p className="owner-role"><div className="role-color">♛ Właściciel</div></p>
               </div>
               <div className="owner">
@@ -78,7 +80,7 @@ const Home = () => {
                 <p className="owner-role"><div className="role-color">⚜ Tester</div></p>
               </div>
               <div className="owner">
-              <Link to={`http://localhost:3000/users/LONNEKXDD/642ddb8c08c989353be41b18`}>
+              <Link to={`https://nevvy.live/users/LONNEKXDD/642ddb8c08c989353be41b18`}>
                 <p className="owner-name"><div className="role-color">Piotr Lonn</div></p>
                 </Link>
                 <p className="owner-role"><div className="role-color">☁ Frontend Developer</div></p>
